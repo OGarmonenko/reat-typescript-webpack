@@ -1,0 +1,26 @@
+.wrapperCard {
+    padding: 25px 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    word-wrap: break-word;
+}
+.title {
+    padding: 25px 0 0 25px;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+}
+.subTitle {
+    font-weight: bold;
+}
+.dataRecord {
+    line-height: 21px;
+    margin-left: 5px;
+}
+.cardRow {
+    display: flex;
+    align-items: center;
+
+}
+

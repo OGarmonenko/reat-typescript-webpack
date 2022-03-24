@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "jsx": "react",
+    "sourceMap": true,
+    "removeComments": true,
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+    "baseUrl": "./",
+    "paths": {
+      "App": ["src/App"],
+      "Pages/*": ["src/pages/*"],
+      "Components/*": ["src/components/*"],
+      "Interfaces/*": ["src/interfaces/*"],
+      "Store/*": ["src/store/*"],
+      "Utils/*": ["src/utils/*"],
+      "Assets/*": ["src/assets/*"]
+    }
+  },
+
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": ["node_modules"]
+}

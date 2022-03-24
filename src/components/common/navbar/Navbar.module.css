@@ -1,0 +1,34 @@
+.wrapperNavbar {
+    padding: 5px 25px;
+    background-color: #61dafb;
+    display: flex;
+    align-items: center;
+    height: 70px;
+    max-height: 70px;
+}
+.wrapperSubNav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 110px;
+    height: 40px;
+    border: 1px solid #ffffff;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+.wrapperSubNav:hover {
+    border: 1px solid #4F95DA;
+    opacity: 0.8;
+}
+.arrow {
+    width: 25px;
+    height:25px;
+}
+.itemNavbar {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 0 0 0 10px;
+}
