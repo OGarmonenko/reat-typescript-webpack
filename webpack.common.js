@@ -7,6 +7,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, './build'),
+    publicPath: "/",
     clean: true,
   },
   module: {
@@ -37,13 +38,13 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
-      App: path.resolve(__dirname, 'src/App/'),
-      Pages: path.resolve(__dirname, 'src/pages/'),
-      Components: path.resolve(__dirname, 'src/components/'),
-      Interfaces: path.resolve(__dirname, 'src/interfaces/'),
-      Store: path.resolve(__dirname, 'src/store/'),
-      Utils: path.resolve(__dirname, 'src/utils/'),
-      Assets: path.resolve(__dirname, 'src/assets/')
+      '@app': path.resolve(__dirname, 'src/App/'),
+      '@pages': path.resolve(__dirname, 'src/pages/'),
+      '@components': path.resolve(__dirname, 'src/components/'),
+      '@interfaces': path.resolve(__dirname, 'src/interfaces/'),
+      '@store': path.resolve(__dirname, 'src/store/'),
+      '@utils': path.resolve(__dirname, 'src/utils/'),
+      '@assets': path.resolve(__dirname, 'src/assets/')
     },
   },
 };

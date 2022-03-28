@@ -8,13 +8,13 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
-      "App": ["src/App"],
-      "Pages/*": ["src/pages/*"],
-      "Components/*": ["src/components/*"],
-      "Interfaces/*": ["src/interfaces/*"],
-      "Store/*": ["src/store/*"],
-      "Utils/*": ["src/utils/*"],
-      "Assets/*": ["src/assets/*"]
+      "@app": ["src/App"],
+      "@pages/*": ["src/pages/*"],
+      "@components/*": ["src/components/*"],
+      "@interfaces/*": ["src/interfaces/*"],
+      "@store/*": ["src/store/*"],
+      "@utils/*": ["src/utils/*"],
+      "@assets/*": ["src/assets/*"]
     }
   },
 

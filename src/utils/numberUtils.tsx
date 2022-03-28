@@ -1,4 +1,5 @@
 export default function getNumberRecord(record: string) : string {
-    return record.replace(/[^0-9]/g,"");
+    if (!record) return '-';
+    return record.replace(/[^0-9]/g,'');
 };
 

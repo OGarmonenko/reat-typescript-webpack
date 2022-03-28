@@ -5,7 +5,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(common, {
   mode: 'production',
-  devtool: 'source-map',
   plugins: [
     new HtmlWebpackPlugin({
       title: 'React TypeScript Webpack',
