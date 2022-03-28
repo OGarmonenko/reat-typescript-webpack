@@ -1,14 +1,12 @@
-import {Record_Props} from './interfaceRecordProps';
+import {Record_Props} from '@interfaces/interfaceRecordProps';
 
 export interface State {
-    selectedRecord: Record_Props;
     records: Record_Props[];
 }
 
-export interface Service {
-    getRecord: () => Record_Props;
+export interface RecordService {
     getRecords: () => Record_Props[];
     addRecord: (payload: Record_Props, state?: State) => Record_Props[];
-    removeRecord: (payload: Record_Props, state?: State) => Record_Props[];
-    findRecord: (payload: Record_Props, state?: State) => void;
+    removeRecord: (payload: number, state?: State) => Record_Props[];
+    findRecord: (payload: number, state?: State) => Record_Props;
 }

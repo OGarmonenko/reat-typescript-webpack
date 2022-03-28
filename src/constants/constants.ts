@@ -1,7 +1,7 @@
 const CONSTANTS = {
   ROUTES: {
     MAIN_PATH: '/',
-    CARD_PATH: '/card/:',
+    CARD_PATH: 'card/',
     ERROR_PATH: '/*'
   },
 };

@@ -1,9 +1,9 @@
 import React, {useState, FC} from 'react';
-import CustomButton from 'Components/custom/button/CustomButton';
-import CustomInput from 'Components/custom/input/CustomInput';
-import * as moment from 'moment';
+import CustomButton from '@components/custom/button/CustomButton';
+import CustomInput from '@components/custom/input/CustomInput';
+import moment from 'moment';
 import styles from './Header.module.css';
-import {Record_Props} from 'Interfaces/interfaceRecordProps';
+import {Record_Props} from '@interfaces/interfaceRecordProps';
 
 interface Header_Props {
     handleClickAdd:(record: Record_Props) => void;
