@@ -9,6 +9,19 @@ module.exports = merge(common, {
     static: {
       directory: path.resolve(__dirname, './public'),
     },
+    proxy: {
+      '/api/*': {
+        target: 'http://localhost:3033',
+        secure: false,
+        changeOrigin: true,
+        headers: {
+          "Connection": "keep-alive"
+        },
+      pathRewrite: {
+          '^/api' : ''
+        }
+      },
+    },
     historyApiFallback: true,
     host: "localhost",
     port: 3000,

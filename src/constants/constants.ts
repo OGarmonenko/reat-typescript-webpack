@@ -4,6 +4,10 @@ const CONSTANTS = {
     CARD_PATH: 'card/',
     ERROR_PATH: '/*'
   },
+  API: {
+    BASE_URL: 'api/',
+    RECORD_URL: 'record/',
+  }
 };
 
 export default CONSTANTS;
