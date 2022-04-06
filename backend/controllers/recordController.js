@@ -19,8 +19,6 @@ class recordController {
     }
   }
   async removeRecord(req, res) {
-    console.log(req.params.id, 'id')
-
     try {
       const data = await recordService.deleteRecord(req.params.id);
       return res.json(data)

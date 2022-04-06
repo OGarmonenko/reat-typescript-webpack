@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "nodemonConfig": {
+    "ignore": [
+      "data/*.json"
+    ]
+  },
   "scripts": {
     "server": "nodemon server/server.js"
   },

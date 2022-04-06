@@ -7,58 +7,33 @@ import {useNavigate} from 'react-router-dom';
 import constants from '../../constants/constants';
 import {httpService} from '../../api/httpService';
 import {storeService} from '@store/storeService';
+import {ACTION, HttpStatusCode} from '../../api/enums';
 
 const MainPage: FC = () => {
     const [records, setRecords] = useState<Record_Props[]>([]);
     const [isLoading, setIsLoading] =useState<boolean>(true);
     const [error, setError] = useState<string>('');
+    const [needRefresh, setNeedRefresh] = useState<boolean>(false);
     let history = useNavigate();
 
     useEffect( ()=> {
         (async function () {
-            try{
-                const result = await httpService.getRecords();
-                setRecords(result);
-            }
-            catch (e) {
-                setError(e.message);
-            }
-            finally {
-                setIsLoading(false);
-            }
+            const result = await request(ACTION.GET_RECORDS);
+            setRecords(result);
         })();
-    },[]);
+    },[needRefresh]);
 
     const addRecord = async (record: Record_Props) => {
-        setIsLoading(true);
-        try {
-            const status = await  httpService.addRecord(record);
-            if (status === 200) {
-                setRecords([...records, record]);
-            }
-        }
-        catch (e) {
-            setError(e.message);
-        }
-        finally {
-            setIsLoading(false);
+        const result = await request(ACTION.ADD_RECORD, record)
+        if (result === HttpStatusCode.OK) {
+           setNeedRefresh(!needRefresh)
         }
     };
 
     const removeRecord = async (recordID: number) => {
-        setIsLoading(true);
-        try {
-            const status= await httpService.removeRecord(recordID);
-           // console.log(typeof status, 'fff')
-            if (status === 200) {
-                setRecords(records.filter(r => r.id !== recordID));
-            }
-        }
-        catch (e) {
-            setError(e.message);
-        }
-        finally {
-            setIsLoading(false);
+        const result = await request(ACTION.REMOVE_RECORD, recordID)
+        if (result === HttpStatusCode.OK) {
+            setNeedRefresh(!needRefresh)
         }
     };
 
@@ -67,6 +42,30 @@ const MainPage: FC = () => {
        history(constants.ROUTES.CARD_PATH + `${recordID}`);
    };
 
+   const request = async ( action: string, payload?: any) => {
+        setIsLoading(true);
+        let res: any = null;
+        try {
+            switch (action) {
+                case (ACTION.GET_RECORDS) : {
+                    res = await httpService.getRecords();
+                    return res;
+                }
+                case (ACTION.ADD_RECORD) : {
+                    res = await httpService.addRecord(payload);
+                    return res;
+                }
+                case (ACTION.REMOVE_RECORD) : {
+                    res = await httpService.removeRecord(payload);
+                    return res;
+                }
+            }
+        } catch (e) {
+            setError(e.message);
+        } finally {
+            setIsLoading(false);
+        }
+    }
 
    if (error) {
        return <p> { error } </p>
