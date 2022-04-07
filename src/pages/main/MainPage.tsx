@@ -16,7 +16,7 @@ const MainPage: FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [needRefresh, setNeedRefresh] = useState<boolean>(false);
     let history = useNavigate();
-    const [isModal, setModal] = React.useState<boolean>(true);
+    const [isModal, setModal] = React.useState<boolean>(false);
 
     useEffect( ()=> {
         (async function () {

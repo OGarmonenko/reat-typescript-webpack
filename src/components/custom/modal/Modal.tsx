@@ -2,11 +2,11 @@ import React, { ReactElement, FC } from 'react';
 import styles from './Modal.module.css';
 
 interface Modal_Props {
-        visible: boolean
-        title: string
-        content: ReactElement | string
-        footer: ReactElement | string
-        onClose: () => void
+        visible: boolean;
+        title: string;
+        content: ReactElement;
+        footer: ReactElement;
+        onClose: () => void;
 }
 
 const Modal : FC <Modal_Props> = ({ visible, title, content,
@@ -26,6 +26,7 @@ const Modal : FC <Modal_Props> = ({ visible, title, content,
                  <div className={styles.modalFooter}>{ footer }</div>
             </div>
         </div>
-    )
+    );
 };
+
 export default Modal;
