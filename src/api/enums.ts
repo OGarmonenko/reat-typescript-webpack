@@ -1,6 +1,6 @@
 export const enum HttpStatusCode  {
     OK = 200,
-    SREVER_ERROR = 500
+    SERVER_ERROR = 500,
 }
 
 export const enum ACTION  {

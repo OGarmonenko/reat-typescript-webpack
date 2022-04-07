@@ -9,9 +9,9 @@ class recordService {
     try {
       const prev = JSON.parse(fs.readFileSync(constants.DATA_PATH, (err, data) => (data)));
       fs.writeFileSync(constants.DATA_PATH, JSON.stringify([...prev, data]));
-      return ({success:true})
+      return ({success:true});
     } catch (e) {
-     throw e
+     throw e;
     }
   };
   async deleteRecord(id) {
@@ -19,9 +19,9 @@ class recordService {
       const prev = JSON.parse(fs.readFileSync(constants.DATA_PATH, (err, data) => (data)));
       const newArr = prev.filter(n => n.id !== Number(id));
       fs.writeFileSync(constants.DATA_PATH, JSON.stringify(newArr));
-      return ({success:true})
+      return ({success:true});
     } catch (e) {
-      throw e
+      throw e;
     }
   };
 }

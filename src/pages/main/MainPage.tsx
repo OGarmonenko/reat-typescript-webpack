@@ -4,17 +4,19 @@ import Header from '@components/common/header/Header';
 import styles from './Content.module.css';
 import List from '@components/toMainPage/List';
 import {useNavigate} from 'react-router-dom';
-import constants from '../../constants/constants';
-import {httpService} from '../../api/httpService';
+import constants from '@constants';
+import {httpService} from '@api/httpService';
 import {storeService} from '@store/storeService';
-import {ACTION, HttpStatusCode} from '../../api/enums';
+import {ACTION, HttpStatusCode} from '@api/enums';
+import Modal from '@components/custom/modal/Modal';
 
 const MainPage: FC = () => {
     const [records, setRecords] = useState<Record_Props[]>([]);
     const [isLoading, setIsLoading] =useState<boolean>(true);
-    const [error, setError] = useState<string>('');
+    const [error, setError] = useState<string | null>(null);
     const [needRefresh, setNeedRefresh] = useState<boolean>(false);
     let history = useNavigate();
+    const [isModal, setModal] = React.useState<boolean>(false);
 
     useEffect( ()=> {
         (async function () {
@@ -26,14 +28,14 @@ const MainPage: FC = () => {
     const addRecord = async (record: Record_Props) => {
         const result = await request(ACTION.ADD_RECORD, record)
         if (result === HttpStatusCode.OK) {
-           setNeedRefresh(!needRefresh)
+           setNeedRefresh(!needRefresh);
         }
     };
 
     const removeRecord = async (recordID: number) => {
         const result = await request(ACTION.REMOVE_RECORD, recordID)
         if (result === HttpStatusCode.OK) {
-            setNeedRefresh(!needRefresh)
+            setNeedRefresh(!needRefresh);
         }
     };
 
@@ -47,41 +49,50 @@ const MainPage: FC = () => {
         let res: any = null;
         try {
             switch (action) {
-                case (ACTION.GET_RECORDS) : {
+                case (ACTION.GET_RECORDS) :
                     res = await httpService.getRecords();
                     return res;
-                }
-                case (ACTION.ADD_RECORD) : {
+                case (ACTION.ADD_RECORD) :
                     res = await httpService.addRecord(payload);
                     return res;
-                }
-                case (ACTION.REMOVE_RECORD) : {
+                case (ACTION.REMOVE_RECORD) :
                     res = await httpService.removeRecord(payload);
                     return res;
-                }
+                default : return res;
             }
         } catch (e) {
             setError(e.message);
+            setModal(true);
+            setRecords([]);
         } finally {
             setIsLoading(false);
         }
-    }
+    };
 
-   if (error) {
-       return <p> { error } </p>
-   }
+    const onClose = () => {
+        setModal(false);
+        setError(null);
+    };
+
     return (
         <div>
            <Header handleClickAdd={ addRecord } />
             {!isLoading
                 ? <div className={styles.wrapperContent}>
-                    {!records.length
+                    {!records?.length
                         ? <p className={styles.textError}>Not records</p>
                         : <List title={"Current records:"} records={records} removeRecord={removeRecord}
                                 refreshRoute={ refreshRoute }/>
                     }
                 </div>
                 : <p> Идет загрузка... </p>
+            }
+
+            {error && <Modal visible={isModal}
+                             title="Error"
+                             content={<p> { error } </p>}
+                             footer={<button onClick={ onClose }> OK </button>}
+                             onClose={ onClose } />
             }
         </div>
     );

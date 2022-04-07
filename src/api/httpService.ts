@@ -1,6 +1,6 @@
-import apiService from './apiService';
+import apiService from '@api/apiService';
 import {Record_Props} from '@interfaces/interfaceRecordProps';
-import constants from '../constants/constants';
+import constants from '@constants';
 import {AxiosResponse} from 'axios';
 
 export const httpService = {
@@ -13,4 +13,4 @@ export const httpService = {
     removeRecord: (payload:number): Promise<number> => {
         return apiService.delete(`${constants.API.RECORD_URL}${payload}`).then((response:AxiosResponse) => response.status);
     },
-}
+};

@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import constants from '../../../constants/constants';
+import constants from '@constants';
 import styles from './Navbar.module.css';
 import arrowLeft from '@assets/arrow.png';
 import {useNavigate} from 'react-router-dom';
