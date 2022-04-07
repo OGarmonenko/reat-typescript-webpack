@@ -18,9 +18,9 @@ const ListItem: FC <ListItem_Props> = ({record, onRemove, onClickRecord}) => {
         onRemove(record.id);
     };
 
-    const handleClickRow = (e : React.MouseEvent<HTMLDivElement>) => {
+    const handleClickRow = () => {
         if (!window.getSelection()?.toString()) {
-          onClickRecord(record.id)
+          onClickRecord(record.id);
         }
     };
 

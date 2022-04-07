@@ -26,7 +26,4 @@ const List: FC <List_Props> = ({ title, records, removeRecord, refreshRoute }) =
   );
 };
 
-
-
-
 export default List;

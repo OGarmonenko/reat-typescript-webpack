@@ -5,7 +5,7 @@ interface CustomInput_Props {
   placeholder: string;
   type:any;
   value:string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void ;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const CustomInput: FC <CustomInput_Props>= ({value, onChange, ...rest}) => {

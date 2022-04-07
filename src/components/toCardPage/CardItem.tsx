@@ -9,8 +9,8 @@ interface CardItem_Props {
 }
 
 const CardItem: FC <CardItem_Props> = ({selectedRecord}) => {
-    const numbers = useMemo(()=> getNumberRecord(selectedRecord?.item), [selectedRecord] );
-    const date = useMemo(() => getDateRecord(selectedRecord?.date), [selectedRecord])
+    const numbers = useMemo(()=> getNumberRecord(selectedRecord?.item), [selectedRecord]);
+    const date = useMemo(() => getDateRecord(selectedRecord?.date), [selectedRecord]);
 
     return (
            <>

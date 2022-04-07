@@ -14,7 +14,9 @@
       "@interfaces/*": ["src/interfaces/*"],
       "@store/*": ["src/store/*"],
       "@utils/*": ["src/utils/*"],
-      "@assets/*": ["src/assets/*"]
+      "@assets/*": ["src/assets/*"],
+      "@api/*": ["src/api/*"],
+      "@constants": ["src/constants/constants"],
     }
   },
 

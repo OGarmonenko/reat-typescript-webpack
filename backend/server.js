@@ -9,5 +9,4 @@ app.use('/record', recordRouter);
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
-
 });
