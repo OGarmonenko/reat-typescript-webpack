@@ -89,10 +89,11 @@ const MainPage: FC = () => {
             }
 
             {error && <Modal visible={isModal}
-                             title="Error!!!"
+                             title="Error"
                              content={<p> { error } </p>}
                              footer={<button onClick={ onClose }> OK </button>}
-                             onClose={ onClose } />}
+                             onClose={ onClose } />
+            }
         </div>
     );
 };
