@@ -5,7 +5,7 @@ import arrowLeft from '@assets/arrow.png';
 import {useNavigate} from 'react-router-dom';
 
 const Navbar: FC = () => {
-    let history = useNavigate();
+    const history = useNavigate();
 
     return (
         <div className={styles.wrapperNavbar}>
