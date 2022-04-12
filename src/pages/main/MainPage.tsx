@@ -85,15 +85,15 @@ const MainPage: FC = () => {
                                 refreshRoute={ refreshRoute }/>
                     }
                 </div>
-                : <p> Идет загрузка... </p>
+                : <p> Loading... </p>
             }
 
-            {error && <Modal visible={isModal}
+            <Modal visible={isModal}
                              title="Error"
                              content={<p> { error } </p>}
-                             footer={<button onClick={ onClose }> OK </button>}
+                             footer={<><button onClick={ onClose }> OK </button></>}
                              onClose={ onClose } />
-            }
+
         </div>
     );
 };

@@ -9,10 +9,10 @@ const CardPage: FC = () => {
     const {recordID} = useParams<string>();
     const [selectedRecord, setSelectedRecord] = useState<Record_Props | null>(storeService.findRecord(Number(recordID)));
 
-    useEffect(()=> {
+  /*  useEffect(()=> {
         const result: Record_Props = storeService.findRecord(Number(recordID));
         setSelectedRecord(result);
-      }, []);
+      }, []);/*/
 
     return (
         <div>

@@ -14,8 +14,8 @@ const Modal : FC <Modal_Props> = ({ visible, title, content,
 
     if (!visible) return null;
     return (
-        <div className={styles.modal} onClick={onClose}>
-            <div className={styles.modalDialog} onClick={e => e.stopPropagation()}>
+        <div className={styles.modal} /*onClick={onClose}*/>
+            <div className={styles.modalDialog} /*onClick={e => e.stopPropagation()}*/>
                 <div className={styles.modalHeader}>
                     <h3 className={styles.modalTitle} >{ title }</h3>
                     <div className={styles.modalClose} onClick={ onClose }><b> x </b></div>
