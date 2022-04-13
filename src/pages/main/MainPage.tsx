@@ -26,7 +26,7 @@ const MainPage: FC = () => {
     },[needRefresh]);
 
     const addRecord = async (record: Record_Props) => {
-        const result = await request(ACTION.ADD_RECORD, record);
+        const result = await request(ACTION.ADD_RECORD, record)
         if (result === HttpStatusCode.OK) {
            setNeedRefresh(!needRefresh);
         }
