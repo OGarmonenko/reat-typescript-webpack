@@ -1,14 +1,14 @@
-import React, { FC, useState, useEffect } from 'react';
-import { Record_Props } from '@interfaces/interfaceRecordProps';
-import Header from '@components/common/header/Header';
-import styles from './Content.module.css';
-import List from '@components/toMainPage/List';
-import { useNavigate } from 'react-router-dom';
-import constants from '@constants';
-import { httpService } from '@api/httpService';
-import { storeService } from '@store/storeService';
-import { ACTION, HttpStatusCode } from '@api/enums';
-import Modal from '@components/custom/modal/Modal';
+import React, { FC, useState, useEffect } from "react";
+import { Record_Props } from "@interfaces/interfaceRecordProps";
+import Header from "@components/common/header/Header";
+import styles from "./Content.module.css";
+import List from "@components/toMainPage/List";
+import { useNavigate } from "react-router-dom";
+import constants from "@constants";
+import { httpService } from "@api/httpService";
+import { storeService } from "@store/storeService";
+import { ACTION, HttpStatusCode } from "@api/enums";
+import Modal from "@components/custom/modal/Modal";
 
 const MainPage: FC = () => {
   const [records, setRecords] = useState<Record_Props[]>([]);
@@ -20,7 +20,7 @@ const MainPage: FC = () => {
 
   useEffect(() => {
     (async function () {
-      const result = await request(ACTION.GET_RECORDS)
+      const result = await request(ACTION.GET_RECORDS);
       setRecords(result);
     })();
   }, [needRefresh]);
