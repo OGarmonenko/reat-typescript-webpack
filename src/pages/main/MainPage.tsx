@@ -20,20 +20,20 @@ const MainPage: FC = () => {
 
     useEffect( ()=> {
         (async function () {
-            const result = await request(ACTION.GET_RECORDS);
+            const result = await request(ACTION.GET_RECORDS)
             setRecords(result);
         })();
     },[needRefresh]);
 
     const addRecord = async (record: Record_Props) => {
-        const result = await request(ACTION.ADD_RECORD, record)
+        const result = await request(ACTION.ADD_RECORD, record);
         if (result === HttpStatusCode.OK) {
            setNeedRefresh(!needRefresh);
         }
     };
 
     const removeRecord = async (recordID: number) => {
-        const result = await request(ACTION.REMOVE_RECORD, recordID)
+        const result = await request(ACTION.REMOVE_RECORD, recordID);
         if (result === HttpStatusCode.OK) {
             setNeedRefresh(!needRefresh);
         }
@@ -43,7 +43,7 @@ const MainPage: FC = () => {
        storeService.pushRecords(records);
        history(constants.ROUTES.CARD_PATH + `${recordID}`);
    };
-
+   /* eslint-disable  @typescript-eslint/no-explicit-any */
    const request = async ( action: string, payload?: any) => {
         setIsLoading(true);
         let res: any = null;
@@ -85,7 +85,7 @@ const MainPage: FC = () => {
                                 refreshRoute={ refreshRoute }/>
                     }
                 </div>
-                : <p> Идет загрузка... </p>
+                : <p> Loading... </p>
             }
 
             {error && <Modal visible={isModal}
