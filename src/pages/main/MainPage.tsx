@@ -41,7 +41,7 @@ const MainPage: FC = () => {
 
    const refreshRoute = (recordID: number) => {
        storeService.pushRecords(records);
-       history(constants.ROUTES.CARD_PATH + `${recordID}`);
+       history(constants.ROUTES.CARD_PATH + `${recordID}`)
    };
    /* eslint-disable  @typescript-eslint/no-explicit-any */
    const request = async ( action: string, payload?: any) => {
