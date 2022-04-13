@@ -1,14 +1,14 @@
-import React, { FC, useState, useEffect } from "react";
-import { Record_Props } from "@interfaces/interfaceRecordProps";
-import Header from "@components/common/header/Header";
-import styles from "./Content.module.css";
-import List from "@components/toMainPage/List";
-import { useNavigate } from "react-router-dom";
-import constants from "@constants";
-import { httpService } from "@api/httpService";
-import { storeService } from "@store/storeService";
-import { ACTION, HttpStatusCode } from "@api/enums";
-import Modal from "@components/custom/modal/Modal";
+import React, { FC, useState, useEffect } from 'react';
+import { Record_Props } from '@interfaces/interfaceRecordProps';
+import Header from '@components/common/header/Header';
+import styles from './Content.module.css';
+import List from '@components/toMainPage/List';
+import { useNavigate } from 'react-router-dom';
+import constants from '@constants';
+import { httpService } from '@api/httpService';
+import { storeService } from '@store/storeService';
+import { ACTION, HttpStatusCode } from '@api/enums';
+import Modal from '@components/custom/modal/Modal';
 
 const MainPage: FC = () => {
   const [records, setRecords] = useState<Record_Props[]>([]);
@@ -84,7 +84,7 @@ const MainPage: FC = () => {
             <p className={styles.textError}>Not records</p>
           ) : (
             <List
-              title={"Current records:"}
+              title={'Current records:'}
               records={records}
               removeRecord={removeRecord}
               refreshRoute={refreshRoute}
