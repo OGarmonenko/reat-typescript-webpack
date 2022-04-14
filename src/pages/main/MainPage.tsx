@@ -19,10 +19,20 @@ const MainPage: FC = () => {
   const [isModal, setModal] = React.useState<boolean>(false);
 
   useEffect(() => {
-    (async function () {
-      const result = await request(ACTION.GET_RECORDS);
-      setRecords(result);
-    })();
+    setIsLoading(true);
+    httpService
+      .getRecords()
+      .then((res: Record_Props[]) => {
+        setRecords(res);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setRecords([]);
+        setModal(true);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, [needRefresh]);
 
   const addRecord = async (record: Record_Props) => {
@@ -43,15 +53,13 @@ const MainPage: FC = () => {
     storeService.pushRecords(records);
     history(constants.ROUTES.CARD_PATH + `${recordID}`);
   };
+
   /* eslint-disable  @typescript-eslint/no-explicit-any */
   const request = async (action: string, payload?: any) => {
     setIsLoading(true);
     let res: any = null;
     try {
       switch (action) {
-        case ACTION.GET_RECORDS:
-          res = await httpService.getRecords();
-          return res;
         case ACTION.ADD_RECORD:
           res = await httpService.addRecord(payload);
           return res;
@@ -64,7 +72,6 @@ const MainPage: FC = () => {
     } catch (e) {
       setError(e.message);
       setModal(true);
-      setRecords([]);
     } finally {
       setIsLoading(false);
     }
