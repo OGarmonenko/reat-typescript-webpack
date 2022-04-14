@@ -7,9 +7,7 @@ import { storeService } from '@store/storeService';
 
 const CardPage: FC = () => {
   const { recordID } = useParams<string>();
-  const [selectedRecord] = useState<Record_Props | null>(
-    storeService.findRecord(Number(recordID))
-  );
+  const [selectedRecord] = useState<Record_Props | null>(storeService.findRecord(Number(recordID)));
   return (
     <div>
       <Navbar />

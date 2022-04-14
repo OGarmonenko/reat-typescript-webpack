@@ -1,5 +1,6 @@
 import React, { ReactElement, FC } from 'react';
 import styles from './Modal.module.css';
+import close from '@assets/icons/close.png';
 
 interface Modal_Props {
   visible: boolean;
@@ -9,13 +10,7 @@ interface Modal_Props {
   onClose: () => void;
 }
 
-const Modal: FC<Modal_Props> = ({
-  visible,
-  title,
-  content,
-  footer,
-  onClose,
-}) => {
+const Modal: FC<Modal_Props> = ({ visible, title, content, footer, onClose }) => {
   if (!visible) return null;
   return (
     <div className={styles.modal}>
@@ -23,7 +18,7 @@ const Modal: FC<Modal_Props> = ({
         <div className={styles.modalHeader}>
           <h3 className={styles.modalTitle}>{title}</h3>
           <div className={styles.modalClose} onClick={onClose}>
-            <b> x </b>
+            <img src={close} className={styles.close}></img>
           </div>
         </div>
         <div className={styles.modalBody}>

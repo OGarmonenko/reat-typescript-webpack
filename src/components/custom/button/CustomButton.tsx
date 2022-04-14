@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 import styles from './CustomButton.module.css';
 
 interface CustomButton_Props {
@@ -7,11 +7,10 @@ interface CustomButton_Props {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const CustomButton: FC <CustomButton_Props> = ({disabled, children, onClick}) => {
-
+const CustomButton: FC<CustomButton_Props> = ({ disabled, children, onClick }) => {
   return (
-    <button className={ styles.CButton } disabled={disabled} onClick={onClick}>
-      { children }
+    <button className={styles.CButton} disabled={disabled} onClick={onClick}>
+      {children}
     </button>
   );
 };
