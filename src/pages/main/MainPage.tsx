@@ -8,7 +8,7 @@ import constants from '@constants';
 import { httpService } from '@api/httpService';
 import { storeService } from '@store/storeService';
 import { ACTION, HttpStatusCode } from '@api/enums';
-import Modal from '@components/custom/modal/Modal';
+import Modal from "@components/custom/modal/Modal";
 
 const MainPage: FC = () => {
   const [records, setRecords] = useState<Record_Props[]>([])
