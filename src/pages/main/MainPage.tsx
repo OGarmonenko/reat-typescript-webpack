@@ -45,7 +45,7 @@ const MainPage: FC = () => {
   const removeRecord = async (recordID: number) => {
     const result = await request(ACTION.REMOVE_RECORD, recordID);
     if (result === HttpStatusCode.OK) {
-      setNeedRefresh(!needRefresh);
+      setNeedRefresh(!needRefresh)
     }
   };
 
