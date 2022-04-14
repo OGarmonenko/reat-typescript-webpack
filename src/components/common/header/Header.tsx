@@ -32,9 +32,9 @@ const Header: FC<Header_Props> = ({ handleClickAdd }) => {
     <form className={styles.wrapperHeader}>
       <CustomInput type={'text'} placeholder={'Enter record...'} value={record} onChange={validateData} />
       <CustomButton disabled={!record.length} onClick={createRecord}>
-        {' '}
-        Add{' '}
-      </CustomButton>
+        Add
+      </CustomButton>{' '}
+      {/* eslint-disable-line*/}
     </form>
   );
 };
