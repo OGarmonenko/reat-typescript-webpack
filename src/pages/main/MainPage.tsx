@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import constants from '@constants';
 import { httpService } from '@api/httpService';
 import { storeService } from '@store/storeService';
-import { ACTION, HttpStatusCode } from '@api/enums';
+import { ACTION, HttpStatusCode } from "@api/enums";
 import Modal from "@components/custom/modal/Modal";
 
 const MainPage: FC = () => {
