@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useMemo } from 'react';
 import { Record_Props } from '@interfaces/interfaceRecordProps';
 import Header from '@components/common/header/Header';
 import styles from './Content.module.css';
