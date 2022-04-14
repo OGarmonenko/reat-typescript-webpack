@@ -7,11 +7,11 @@ import { useNavigate } from 'react-router-dom';
 import constants from '@constants';
 import { httpService } from '@api/httpService';
 import { storeService } from '@store/storeService';
-import { ACTION, HttpStatusCode } from "@api/enums";
-import Modal from "@components/custom/modal/Modal";
+import { ACTION, HttpStatusCode } from '@api/enums';
+import Modal from '@components/custom/modal/Modal';
 
 const MainPage: FC = () => {
-  const [records, setRecords] = useState<Record_Props[]>([])
+  const [records, setRecords] = useState<Record_Props[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [needRefresh, setNeedRefresh] = useState<boolean>(false);
@@ -45,7 +45,7 @@ const MainPage: FC = () => {
   const removeRecord = async (recordID: number) => {
     const result = await request(ACTION.REMOVE_RECORD, recordID);
     if (result === HttpStatusCode.OK) {
-      setNeedRefresh(!needRefresh)
+      setNeedRefresh(!needRefresh);
     }
   };
 
