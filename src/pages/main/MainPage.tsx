@@ -11,8 +11,8 @@ import { ACTION, HttpStatusCode } from '@api/enums';
 import Modal from "@components/custom/modal/Modal";
 
 const MainPage: FC = () => {
-  const [records, setRecords] = useState<Record_Props[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [records, setRecords] = useState<Record_Props[]>([])
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null);
   const [needRefresh, setNeedRefresh] = useState<boolean>(false);
   const history = useNavigate();
