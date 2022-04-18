@@ -4,6 +4,7 @@ import CustomInput from '@components/custom/input/CustomInput';
 import moment from 'moment';
 import styles from './Header.module.css';
 import { Record_Props } from '@interfaces/interfaceRecordProps';
+import { Button } from '@enums';
 
 interface Header_Props {
   handleClickAdd: (record: Record_Props) => void;
@@ -31,11 +32,9 @@ const Header: FC<Header_Props> = ({ handleClickAdd }) => {
   return (
     <form className={styles.wrapperHeader}>
       <CustomInput type={'text'} placeholder={'Enter record...'} value={record} onChange={validateData} />
-      {/* eslint-disable */}
       <CustomButton disabled={!record.length} onClick={createRecord}>
-        Add
+        {Button.ADD}
       </CustomButton>
-      {/* eslint-disable */}
     </form>
   );
 };

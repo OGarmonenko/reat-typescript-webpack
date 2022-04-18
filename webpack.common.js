@@ -47,6 +47,7 @@ module.exports = {
       '@assets': path.resolve(__dirname, 'src/assets/'),
       '@api': path.resolve(__dirname, 'src/api'),
       '@constants': path.resolve(__dirname, 'src/constants/constants'),
+      '@enums': path.resolve(__dirname, 'src/enums/enums'),
     },
   },
 };
