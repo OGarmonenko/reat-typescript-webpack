@@ -17,6 +17,7 @@
       "@assets/*": ["src/assets/*"],
       "@api/*": ["src/api/*"],
       "@constants": ["src/constants/constants"],
+      "@enums": ["src/enums/enums"],
     }
   },
 

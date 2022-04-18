@@ -4,6 +4,7 @@ import styles from './ListItem.module.css';
 import { Record_Props } from '@interfaces/interfaceRecordProps';
 import getNumberRecord from '@utils/numberUtils';
 import getDateRecord from '@utils/dateUtils';
+import { Button } from '@enums';
 
 interface ListItem_Props {
   record: Record_Props;
@@ -29,7 +30,7 @@ const ListItem: FC<ListItem_Props> = ({ record, onRemove, onClickRecord }) => {
         <p className={styles.textRecord}>{record.item}</p>
         <p className={styles.numberRecord}>{getNumberRecord(record.item)}</p>
         <p className={styles.dateRecord}>{getDateRecord(record.date)}</p>
-        <CustomButton onClick={handleClickButton}>Delete</CustomButton>
+        <CustomButton onClick={handleClickButton}>{Button.DELETE}</CustomButton>
       </div>
     </li>
   );

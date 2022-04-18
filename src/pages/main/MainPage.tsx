@@ -7,8 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import constants from '@constants';
 import { httpService } from '@api/httpService';
 import { storeService } from '@store/storeService';
-import { ACTION, HttpStatusCode } from '@api/enums';
-import Modal from '@components/custom/modal/Modal';
+import { ACTION, HttpStatusCode } from '@enums';
+import MappingModal from '@components/custom/modal/MappingModal';
+import { TypeModal } from '@interfaces/interfaceModalProps';
 
 const MainPage: FC = () => {
   const [records, setRecords] = useState<Record_Props[]>([]);
@@ -16,7 +17,7 @@ const MainPage: FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [needRefresh, setNeedRefresh] = useState<boolean>(false);
   const history = useNavigate();
-  const [isModal, setModal] = React.useState<boolean>(false);
+  const [type, setType] = useState<string | null>(null);
 
   useEffect(() => {
     setIsLoading(true);
@@ -28,7 +29,7 @@ const MainPage: FC = () => {
       .catch((error) => {
         setError(error.message);
         setRecords([]);
-        setModal(true);
+        setType(TypeModal.ERROR);
       })
       .finally(() => {
         setIsLoading(false);
@@ -71,14 +72,13 @@ const MainPage: FC = () => {
       }
     } catch (e) {
       setError(e.message);
-      setModal(true);
+      setType(TypeModal.ERROR);
     } finally {
       setIsLoading(false);
     }
   };
 
   const onClose = () => {
-    setModal(false);
     setError(null);
   };
 
@@ -101,16 +101,7 @@ const MainPage: FC = () => {
       ) : (
         <p> Loading... </p>
       )}
-
-      {error && (
-        <Modal
-          visible={isModal}
-          title="Error"
-          content={<p> {error} </p>}
-          footer={<button onClick={onClose}> OK </button>}
-          onClose={onClose}
-        />
-      )}
+      {error && <MappingModal type={type} onClose={onClose} message={error} />}
     </div>
   );
 };
