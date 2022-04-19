@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import Modal from '@components/custom/modal/Modal';
-import { TypeModal, HeaderColor, Modal_Props } from '@interfaces/interfaceModalProps';
+import { TypeModal, HeaderColor, Modal_Props, configModal_Props } from '@interfaces/interfaceModalProps';
 import closeIcon from '@assets/icons/close.png';
 import errorIcon from '@assets/icons/error.png';
 import warnIcon from '@assets/icons/warning.png';
@@ -9,64 +9,73 @@ import styles from '@components/custom/modal/Modal.module.css';
 import { ALT, Button } from '@enums';
 
 interface Modal_Type {
-  type: string;
-  message: string;
   onClose: () => void;
   onCancel?: () => void;
+  configModal: configModal_Props;
 }
 
-const MappingModal: FC<Modal_Type> = ({ type, message, onClose, onCancel }) => {
-  const Props: { [key: string]: Modal_Props } = {
-    [TypeModal.ERROR]: {
-      headerColor: HeaderColor.ERROR,
-      header: (
-        <>
-          {TypeModal.ERROR} <img src={closeIcon} className={styles.close} onClick={onClose} alt={ALT.CLOSE} />
-        </>
-      ),
-      content: (
-        <>
-          <img src={errorIcon} className={styles.contentIcon} alt={ALT.ERROR} /> <p> {message} </p>{' '}
-        </>
-      ),
-      footer: <button onClick={onClose}> {Button.OK} </button>,
-    },
-    [TypeModal.WARNING]: {
-      headerColor: HeaderColor.WARNING,
-      header: (
-        <>
-          {TypeModal.WARNING} <img src={closeIcon} className={styles.close} onClick={onClose} alt={ALT.CLOSE} />
-        </>
-      ),
-      content: (
-        <>
-          <img src={warnIcon} className={styles.contentIcon} alt={ALT.WARNING} /> <p> {message} </p>{' '}
-        </>
-      ),
-      footer: (
-        <>
-          <button onClick={onClose}> {Button.OK} </button> <button onClick={onCancel}> {Button.CANCEL} </button>
-        </>
-      ),
-    },
-    [TypeModal.INFO]: {
-      header: (
-        <>
-          type <img src={closeIcon} className={styles.close} onClick={onClose} alt={ALT.CLOSE} />
-        </>
-      ),
-      content: (
-        <>
-          <img src={infoIcon} className={styles.contentIcon} alt={ALT.INFO} /> <p> {message} </p>{' '}
-        </>
-      ),
-      footer: <button onClick={onClose}> {Button.OK} </button>,
-    },
-  };
+const MappingModal: FC<Modal_Type> = ({ configModal, onClose, onCancel }) => {
+  const Props: Modal_Props = useMemo(() => {
+    switch (configModal.type) {
+      case TypeModal.ERROR: {
+        return {
+          header: (
+            <div className={styles.modalHeader} style={{ background: HeaderColor.ERROR }}>
+              <p>{TypeModal.ERROR}</p>{' '}
+              <img src={closeIcon} className={styles.close} onClick={onClose} alt={ALT.CLOSE} />
+            </div>
+          ),
+          content: (
+            <>
+              <img src={errorIcon} className={styles.contentIcon} alt={ALT.ERROR} /> <p> {configModal.data.message} </p>{' '}
+            </>
+          ),
+          footer: <button onClick={onClose}> {Button.OK} </button>,
+        };
+      }
+      case TypeModal.WARNING: {
+        return {
+          header: (
+            <div className={styles.modalHeader} style={{ background: HeaderColor.WARNING }}>
+              <p>{TypeModal.WARNING}</p>{' '}
+              <img src={closeIcon} className={styles.close} onClick={onClose} alt={ALT.CLOSE} />
+            </div>
+          ),
+          content: (
+            <>
+              <img src={warnIcon} className={styles.contentIcon} alt={ALT.WARNING} />{' '}
+              <p> {configModal.data.message} </p>{' '}
+            </>
+          ),
+          footer: (
+            <>
+              <button onClick={onClose}> {Button.OK} </button> <button onClick={onCancel}> {Button.CANCEL} </button>
+            </>
+          ),
+        };
+      }
+      case TypeModal.INFO: {
+        return {
+          header: (
+            <div className={styles.modalHeader}>
+              <p>{TypeModal.INFO}</p> <img src={closeIcon} className={styles.close} onClick={onClose} alt={ALT.CLOSE} />
+            </div>
+          ),
+          content: (
+            <>
+              <img src={infoIcon} className={styles.contentIcon} alt={ALT.INFO} /> <p> {configModal.data.message} </p>{' '}
+            </>
+          ),
+          footer: <button onClick={onClose}> {Button.OK} </button>,
+        };
+      }
+    }
+  }, [configModal.type]);
 
+  if (!configModal.visible) return null;
   return (
     <>
-      <Modal {...Props[type]} />
+      <Modal {...Props} />
     </>
   );
 };
