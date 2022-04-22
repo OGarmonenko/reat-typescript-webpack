@@ -9,15 +9,14 @@ import { httpService } from '@api/httpService';
 import { storeService } from '@store/storeService';
 import { ACTION, HttpStatusCode } from '@enums';
 import MappingModal from '@components/custom/modal/MappingModal';
-import { TypeModal } from '@interfaces/interfaceModalProps';
+import { TypeModal, configModal_Props } from '@interfaces/interfaceModalProps';
 
 const MainPage: FC = () => {
   const [records, setRecords] = useState<Record_Props[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
   const [needRefresh, setNeedRefresh] = useState<boolean>(false);
   const history = useNavigate();
-  const [type, setType] = useState<string | null>(null);
+  const [configModal, setConfigModal] = useState({} as configModal_Props);
 
   useEffect(() => {
     setIsLoading(true);
@@ -27,9 +26,8 @@ const MainPage: FC = () => {
         setRecords(res);
       })
       .catch((error) => {
-        setError(error.message);
         setRecords([]);
-        setType(TypeModal.ERROR);
+        setConfigModal({ type: TypeModal.ERROR, visible: true, data: { message: error.message } });
       })
       .finally(() => {
         setIsLoading(false);
@@ -70,16 +68,15 @@ const MainPage: FC = () => {
         default:
           return res;
       }
-    } catch (e) {
-      setError(e.message);
-      setType(TypeModal.ERROR);
+    } catch (error) {
+      setConfigModal({ type: TypeModal.ERROR, visible: true, data: { message: error.message } });
     } finally {
       setIsLoading(false);
     }
   };
 
   const onClose = () => {
-    setError(null);
+    setConfigModal({ type: null, visible: false, data: { message: null } });
   };
 
   return (
@@ -101,7 +98,7 @@ const MainPage: FC = () => {
       ) : (
         <p> Loading... </p>
       )}
-      {error && <MappingModal type={type} onClose={onClose} message={error} />}
+      <MappingModal onClose={onClose} configModal={configModal} />
     </div>
   );
 };

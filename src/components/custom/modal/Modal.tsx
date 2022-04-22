@@ -6,7 +6,7 @@ const Modal: FC<Modal_Props> = ({ header, content, footer }) => {
   return (
     <div className={styles.modal}>
       <div className={styles.modalDialog}>
-        <div className={styles.modalHeader} /*style={{ background: headerColor }}*/>{header}</div>
+        {header}
         <div className={styles.modalBody}>
           <div className={styles.modalContent}>{content}</div>
         </div>

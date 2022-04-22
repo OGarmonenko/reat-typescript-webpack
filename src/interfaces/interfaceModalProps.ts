@@ -15,3 +15,11 @@ export interface Modal_Props {
   content: ReactElement;
   footer: ReactElement;
 }
+
+export interface configModal_Props {
+  type: string | null;
+  visible: boolean;
+  data: {
+    message: string | null;
+  };
+}
