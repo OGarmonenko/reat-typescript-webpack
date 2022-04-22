@@ -83,7 +83,7 @@ const MainPage: FC = () => {
   };
 
   return (
-    <div>
+    <div data-testid="mainPage">
       <Header handleClickAdd={addRecord} />
       {!isLoading ? (
         <div className={styles.wrapperContent}>

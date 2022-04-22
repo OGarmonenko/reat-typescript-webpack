@@ -12,7 +12,9 @@ const Navbar: FC = () => {
     <div className={styles.wrapperNavbar}>
       <div className={styles.wrapperSubNav} onClick={() => history(constants.ROUTES.MAIN_PATH)}>
         <img src={arrowLeft} className={styles.arrow} alt={ALT.MAIN}></img>
-        <div className={styles.itemNavbar}>{Button.MAIN}</div>
+        <div role="button" className={styles.itemNavbar}>
+          {Button.MAIN}
+        </div>
       </div>
     </div>
   );

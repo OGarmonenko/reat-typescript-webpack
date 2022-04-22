@@ -11,7 +11,6 @@ export enum TypeModal {
   INFO = 'Info',
 }
 export interface Modal_Props {
-  headerColor?: string;
   header: ReactElement;
   content: ReactElement;
   footer: ReactElement;

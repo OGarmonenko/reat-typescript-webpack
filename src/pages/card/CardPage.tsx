@@ -9,7 +9,7 @@ const CardPage: FC = () => {
   const { recordID } = useParams<string>();
   const [selectedRecord] = useState<Record_Props | null>(storeService.findRecord(Number(recordID)));
   return (
-    <div>
+    <div data-testid="cardPage">
       <Navbar />
       <CardItem selectedRecord={selectedRecord} />
     </div>
