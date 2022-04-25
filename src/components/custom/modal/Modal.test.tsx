@@ -4,20 +4,18 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { Modal_Props } from '@interfaces/interfaceModalProps';
 
+const props: Modal_Props = {
+  header: <p role="header">Header</p>,
+  content: <p role="content">Content</p>,
+  footer: <button>OK</button>,
+};
+
 describe('Test Modal', () => {
   test('renders Modal', () => {
-    const props: Modal_Props = {
-      header: <p role="header">Header</p>,
-      content: <p role="content">Content</p>,
-      footer: <button>OK</button>,
-    };
     render(<Modal {...props} />);
-    const divHeader = screen.getByRole('header');
-    expect(divHeader).toBeInTheDocument();
-    const divContent = screen.getByRole('content');
-    expect(divContent).toBeInTheDocument();
-    const button = screen.getByRole('button');
-    expect(button).toBeInTheDocument();
+    expect(screen.getByRole('header')).toBeInTheDocument();
+    expect(screen.getByRole('content')).toBeInTheDocument();
+    expect(screen.getByRole('button')).toBeInTheDocument();
   });
 });
 /*describe ('Header', () => {

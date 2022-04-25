@@ -26,10 +26,16 @@ const ListItem: FC<ListItem_Props> = ({ record, onRemove, onClickRecord }) => {
 
   return (
     <li className={styles.wrapperLi}>
-      <div className={styles.wrapperRecord} onClick={handleClickRow}>
-        <p className={styles.textRecord}>{record.item}</p>
-        <p className={styles.numberRecord}>{getNumberRecord(record.item)}</p>
-        <p className={styles.dateRecord}>{getDateRecord(record.date)}</p>
+      <div data-testid="data-row" className={styles.wrapperRecord} onClick={handleClickRow}>
+        <p data-testid="item" className={styles.textRecord}>
+          {record.item}
+        </p>
+        <p data-testid="numbers" className={styles.numberRecord}>
+          {getNumberRecord(record.item)}
+        </p>
+        <p data-testid="date" className={styles.dateRecord}>
+          {getDateRecord(record.date)}
+        </p>
         <CustomButton onClick={handleClickButton}>{Button.DELETE}</CustomButton>
       </div>
     </li>

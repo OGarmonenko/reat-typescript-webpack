@@ -14,7 +14,9 @@ const CardItem: FC<CardItem_Props> = ({ selectedRecord }) => {
 
   return (
     <>
-      <div className={styles.title}>Selected</div>
+      <div data-testid="data-carditem" className={styles.title}>
+        Selected
+      </div>
       <div className={styles.wrapperCard}>
         <div className={styles.cardRow}>
           <p className={styles.subTitle}> Record:</p>

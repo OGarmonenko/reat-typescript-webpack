@@ -9,12 +9,10 @@ const Navbar: FC = () => {
   const history = useNavigate();
 
   return (
-    <div className={styles.wrapperNavbar}>
-      <div className={styles.wrapperSubNav} onClick={() => history(constants.ROUTES.MAIN_PATH)}>
+    <div data-testid="data-navbar" className={styles.wrapperNavbar}>
+      <div role="button" className={styles.wrapperSubNav} onClick={() => history(constants.ROUTES.MAIN_PATH)}>
         <img src={arrowLeft} className={styles.arrow} alt={ALT.MAIN}></img>
-        <div role="button" className={styles.itemNavbar}>
-          {Button.MAIN}
-        </div>
+        <div className={styles.itemNavbar}>{Button.MAIN}</div>
       </div>
     </div>
   );

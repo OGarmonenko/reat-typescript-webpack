@@ -83,7 +83,7 @@ const MainPage: FC = () => {
     <div data-testid="mainPage">
       <Header handleClickAdd={addRecord} />
       {!isLoading ? (
-        <div className={styles.wrapperContent}>
+        <div data-testid="data-content" className={styles.wrapperContent}>
           {!records?.length ? (
             <p className={styles.textError}>Not records</p>
           ) : (
@@ -96,7 +96,7 @@ const MainPage: FC = () => {
           )}
         </div>
       ) : (
-        <p> Loading... </p>
+        <p data-testid="data-load"> Loading... </p>
       )}
       <MappingModal onClose={onClose} configModal={configModal} />
     </div>

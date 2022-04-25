@@ -1,7 +1,6 @@
 import React from 'react';
 import CustomButton from '@components/custom/button/CustomButton';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 interface CustomButton_Props {
@@ -10,52 +9,44 @@ interface CustomButton_Props {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
+const clicked = jest.fn();
+const props: CustomButton_Props = {
+  disabled: false,
+  children: 'OK',
+  onClick: clicked,
+};
+
 describe('Test CustomButton', () => {
-  const props: CustomButton_Props = {
-    disabled: true,
-    children: 'OK',
-    onClick: jest.fn(),
-  };
-  test('render button', () => {
+  test('test render button', () => {
     render(<CustomButton {...props} />);
     expect(screen.getByText('OK')).toBeInTheDocument();
   });
 
+  test('test not disabled', () => {
+    render(<CustomButton {...props} />);
+    expect(screen.getByText('OK')).not.toBeDisabled();
+  });
+
+  test('test click event ', () => {
+    render(<CustomButton {...props} />);
+    fireEvent.click(screen.getByText('OK'));
+    expect(clicked).toHaveBeenCalled();
+  });
+
   test('test disabled', () => {
+    props.disabled = true;
     render(<CustomButton {...props} />);
     expect(screen.getByText('OK')).toBeDisabled();
   });
 
-  test('Test click event ', async () => {
-    const clickMock = jest.fn();
-    const props: CustomButton_Props = {
-      disabled: false,
-      children: 'OK',
-      onClick: clickMock,
-    };
+  test('test not click event', () => {
+    props.disabled = true;
     render(<CustomButton {...props} />);
-    await userEvent.click(screen.getByText('OK'));
-    expect(clickMock).toBeCalled();
+    fireEvent.click(screen.getByText('OK'));
+    expect(clicked).not.toHaveBeenCalled();
   });
 
-  /*  test('double click', () => {
-        const onChange = jest.fn();
-        render(<input type="checkbox" onChange={onChange} />);
-        const checkbox = screen.getByRole('checkbox');
-        userEvent.click(checkbox);
-        expect(onChange).toBeCalled();
-        expect(checkbox).not.toBeChecked();
-    });
-
-    test('click', async () => {
-        render(
-            <div>
-                <label htmlFor="checkbox">Check</label>
-                <input id="checkbox" type="checkbox"/>
-            </div>,
-        );
-
-        await userEvent.click(screen.getByText('Check'));
-        expect(screen.getByLabelText('Check')).toBeChecked();
-    });*/
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 });

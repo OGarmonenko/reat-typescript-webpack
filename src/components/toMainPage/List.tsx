@@ -15,7 +15,7 @@ const List: FC<List_Props> = ({ title, records, removeRecord, refreshRoute }) =>
     <div className={styles.wrapperList}>
       <span className={styles.titleList}>{title}</span>
       <div className={styles.wrapperListItem}>
-        <ol className={styles.list}>
+        <ol data-testid="records" className={styles.list}>
           {records.map((record) => (
             <ListItem record={record} key={record.id} onRemove={removeRecord} onClickRecord={refreshRoute} />
           ))}

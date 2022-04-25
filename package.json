@@ -9,14 +9,11 @@
     "build": "webpack --config webpack.prod.js",
     "lint": "eslint src --ext .ts,.tsx",
     "format": "prettier --config \".prettierrc\" --write --check",
-    "test1": "jest --config ./jest.config.js",
-    "test2": "jest __tests__ --watch",
     "test": "jest"
   },
   "jest": {
     "verbose": true,
     "preset": "ts-jest",
-    "testRegex": "(/tests/.*|(.|/)(test|spec)).(jsx?|tsx?)$",
     "moduleFileExtensions": [
       "ts",
       "tsx",
@@ -37,15 +34,10 @@
     },
     "testEnvironment": "jsdom",
     "transform": {
-      "\\.[j]sx?$": "babel-jest",
       "\\.ts$": "ts-jest",
-      ".+\\.(css|styl|less|sass|scss)$": "jest-css-modules-transform",
-      ".+\\.(png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
-    },
-    "moduleDirectories": [
-      "node_modules",
-      "src"
-    ]
+      ".+\\.(css)$": "jest-css-modules-transform",
+      ".+\\.(png)$": "jest-transform-stub"
+    }
   },
   "husky": {
     "hooks": {
@@ -68,20 +60,16 @@
   "devDependencies": {
     "@babel/cli": "7.17.6",
     "@babel/core": "7.17.8",
-    "@babel/plugin-transform-modules-commonjs": "^7.17.9",
-    "@babel/plugin-transform-typescript": "^7.16.8",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "7.16.7",
     "@babel/preset-typescript": "7.16.7",
-    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/jest-dom": "5.16.4",
     "@testing-library/react": "12.1.1",
-    "@testing-library/user-event": "^14.1.1",
-    "@types/jest": "^27.4.1",
+    "@types/jest": "27.4.1",
     "@types/react": "17.0.41",
     "@types/react-dom": "17.0.14",
     "@typescript-eslint/eslint-plugin": "5.18.0",
     "@typescript-eslint/parser": "5.19.0",
-    "babel-jest": "^27.5.1",
     "babel-loader": "8.2.4",
     "css-loader": "6.7.1",
     "eslint": "8.13.0",
@@ -89,15 +77,14 @@
     "file-loader": "6.2.0",
     "html-webpack-plugin": "5.5.0",
     "husky": "4.0.10",
-    "identity-obj-proxy": "^3.0.0",
     "jest": "27.4.1",
-    "jest-css-modules-transform": "^4.3.0",
-    "jest-transform-stub": "^2.0.0",
+    "jest-css-modules-transform": "4.3.0",
+    "jest-transform-stub": "2.0.0",
     "lint-staged": "8.1.7",
     "prettier": "2.6.2",
     "react-test-renderer": "17.0.2",
     "style-loader": "3.3.1",
-    "ts-jest": "^27.1.4",
+    "ts-jest": "27.1.4",
     "ts-loader": "9.2.8",
     "typescript": "4.6.2",
     "webpack": "5.70.0",

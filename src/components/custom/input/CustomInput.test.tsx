@@ -10,15 +10,15 @@ interface CustomInput_Props {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
+const props: CustomInput_Props = {
+  placeholder: 'Enter record...',
+  type: 'text',
+  value: '',
+  onChange: jest.fn(),
+};
 
 describe('Test CustomInput', () => {
   test('test render input', () => {
-    const props: CustomInput_Props = {
-      placeholder: 'Enter record...',
-      type: 'text',
-      value: 'Test',
-      onChange: jest.fn(),
-    };
     render(<CustomInput {...props} />);
     expect(screen.getByTestId('customInput')).toBeInTheDocument();
   });
