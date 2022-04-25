@@ -24,12 +24,4 @@ describe('Test Navbar', () => {
     expect(icon).toBeInTheDocument();
     expect(icon).toHaveAttribute('alt', 'main');
   });
-
-  //  test ('test sets query param correctly to URL'), () =>{  });
-  /* test('test click event',  () => {
-    const button = screen.getByRole('button');
-    userEvent.click(button);
-    expect(button).toBeNull();
-    screen.debug();
-  });*/
 });

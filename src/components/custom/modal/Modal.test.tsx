@@ -18,24 +18,3 @@ describe('Test Modal', () => {
     expect(screen.getByRole('button')).toBeInTheDocument();
   });
 });
-/*describe ('Header', () => {
-    test('Validation data', () => {
-        render(<Header />)
-        expect(validateData('R')).toBe(true);
-    });
-    test('Validation data', () => {
-        expect(validateData('r')).toBe(true);
-    });
-    test('Validation data', () => {
-        expect(validateData(0)).toBe(true);
-    });
-    test('Validation data', () => {
-        expect(validateData(12)).toBe(true);
-    });
-    test('Validation data', () => {
-        expect(validateData('Я')).toBe(false);
-    });
-    test('Validation data', () => {
-        expect(validateData('я')).toBe(false);
-    });
-});*/
