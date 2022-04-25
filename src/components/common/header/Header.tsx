@@ -30,7 +30,7 @@ const Header: FC<Header_Props> = ({ handleClickAdd }) => {
   };
 
   return (
-    <form className={styles.wrapperHeader}>
+    <form data-testid="data-header" className={styles.wrapperHeader}>
       <CustomInput type={'text'} placeholder={'Enter record...'} value={record} onChange={validateData} />
       <CustomButton disabled={!record.length} onClick={createRecord}>
         {Button.ADD}

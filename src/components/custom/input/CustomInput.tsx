@@ -10,7 +10,7 @@ interface CustomInput_Props {
 }
 
 const CustomInput: FC<CustomInput_Props> = ({ value, onChange, ...rest }) => {
-  return <input className={styles.CInput} {...rest} onChange={onChange} value={value} />;
+  return <input data-testid="customInput" className={styles.CInput} {...rest} onChange={onChange} value={value} />;
 };
 
 export default CustomInput;

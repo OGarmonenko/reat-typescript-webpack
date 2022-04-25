@@ -8,7 +8,36 @@
     "clean": "rm build/bundle.js",
     "build": "webpack --config webpack.prod.js",
     "lint": "eslint src --ext .ts,.tsx",
-    "format": "prettier --config \".prettierrc\" --write --check"
+    "format": "prettier --config \".prettierrc\" --write --check",
+    "test": "jest"
+  },
+  "jest": {
+    "verbose": true,
+    "preset": "ts-jest",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx"
+    ],
+    "moduleNameMapper": {
+      "@app": "<rootDir>/src/App",
+      "@pages/(.*)": "<rootDir>/src/pages/$1",
+      "@components/(.*)": "<rootDir>/src/components/$1",
+      "@interfaces/(.*)": "<rootDir>/src/interfaces/$1",
+      "@store/(.*)": "<rootDir>/src/store/$1",
+      "@utils/(.*)": "<rootDir>/src/utils/$1",
+      "@assets/(.*)": "<rootDir>/src/assets/$1",
+      "@api/(.*)": "<rootDir>/src/api/$1",
+      "@constants": "<rootDir>/src/constants/constants",
+      "@enums": "<rootDir>/src/enums/enums"
+    },
+    "testEnvironment": "jsdom",
+    "transform": {
+      "\\.ts$": "ts-jest",
+      ".+\\.(css)$": "jest-css-modules-transform",
+      ".+\\.(png)$": "jest-transform-stub"
+    }
   },
   "husky": {
     "hooks": {
@@ -31,9 +60,12 @@
   "devDependencies": {
     "@babel/cli": "7.17.6",
     "@babel/core": "7.17.8",
-    "@babel/preset-env": "7.16.11",
+    "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "7.16.7",
     "@babel/preset-typescript": "7.16.7",
+    "@testing-library/jest-dom": "5.16.4",
+    "@testing-library/react": "12.1.1",
+    "@types/jest": "27.4.1",
     "@types/react": "17.0.41",
     "@types/react-dom": "17.0.14",
     "@typescript-eslint/eslint-plugin": "5.18.0",
@@ -45,9 +77,14 @@
     "file-loader": "6.2.0",
     "html-webpack-plugin": "5.5.0",
     "husky": "4.0.10",
+    "jest": "27.4.1",
+    "jest-css-modules-transform": "4.3.0",
+    "jest-transform-stub": "2.0.0",
     "lint-staged": "8.1.7",
     "prettier": "2.6.2",
+    "react-test-renderer": "17.0.2",
     "style-loader": "3.3.1",
+    "ts-jest": "27.1.4",
     "ts-loader": "9.2.8",
     "typescript": "4.6.2",
     "webpack": "5.70.0",
