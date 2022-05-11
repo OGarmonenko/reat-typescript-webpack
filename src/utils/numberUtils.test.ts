@@ -5,5 +5,6 @@ describe('Test getNumberRecord utils', () => {
     expect(getNumberRecord('r10r')).toEqual('10');
     expect(getNumberRecord('0')).toEqual('0');
     expect(getNumberRecord('r')).toEqual('');
+    expect(getNumberRecord('1')).toEqual('1');
   });
 });

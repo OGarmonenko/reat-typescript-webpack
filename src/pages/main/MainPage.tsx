@@ -65,8 +65,6 @@ const MainPage: FC = () => {
         case ACTION.REMOVE_RECORD:
           res = await httpService.removeRecord(payload);
           return res;
-        default:
-          return res;
       }
     } catch (error) {
       setConfigModal({ type: TypeModal.ERROR, visible: true, data: { message: error.message } });
@@ -85,7 +83,9 @@ const MainPage: FC = () => {
       {!isLoading ? (
         <div data-testid="data-content" className={styles.wrapperContent}>
           {!records?.length ? (
-            <p className={styles.textError}>Not records</p>
+            <p data-testid="emptyRecords" className={styles.textError}>
+              Not records
+            </p>
           ) : (
             <List
               title={'Current records:'}

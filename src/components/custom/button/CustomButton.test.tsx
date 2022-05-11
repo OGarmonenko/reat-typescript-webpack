@@ -3,43 +3,37 @@ import CustomButton from '@components/custom/button/CustomButton';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
-interface CustomButton_Props {
-  disabled?: boolean;
-  children: React.ReactChild;
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-}
-
 const clicked = jest.fn();
-const props: CustomButton_Props = {
+const props = {
   disabled: false,
   children: 'OK',
   onClick: clicked,
 };
 
 describe('Test CustomButton', () => {
-  test('test render button', () => {
+  test('renders button with item of children ', () => {
     render(<CustomButton {...props} />);
     expect(screen.getByText('OK')).toBeInTheDocument();
   });
 
-  test('test not disabled', () => {
+  test('buttons will be not disabled when disabled = false', () => {
     render(<CustomButton {...props} />);
     expect(screen.getByText('OK')).not.toBeDisabled();
   });
 
-  test('test click event ', () => {
+  test('click event called if button is not disabled', () => {
     render(<CustomButton {...props} />);
     fireEvent.click(screen.getByText('OK'));
     expect(clicked).toHaveBeenCalled();
   });
 
-  test('test disabled', () => {
+  test('buttons will be disabled when disabled = true', () => {
     props.disabled = true;
     render(<CustomButton {...props} />);
     expect(screen.getByText('OK')).toBeDisabled();
   });
 
-  test('test not click event', () => {
+  test('click event did not called if button is disabled', () => {
     props.disabled = true;
     render(<CustomButton {...props} />);
     fireEvent.click(screen.getByText('OK'));

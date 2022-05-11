@@ -12,7 +12,7 @@ interface List_Props {
 
 const List: FC<List_Props> = ({ title, records, removeRecord, refreshRoute }) => {
   return (
-    <div className={styles.wrapperList}>
+    <div data-testid="data-list" className={styles.wrapperList}>
       <span className={styles.titleList}>{title}</span>
       <div className={styles.wrapperListItem}>
         <ol data-testid="records" className={styles.list}>
