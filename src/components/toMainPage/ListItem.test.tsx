@@ -52,15 +52,6 @@ describe('Test ListItem', () => {
         fireEvent.click(buttonElement);
         expect(mockOnRemove).toHaveBeenCalledWith(props.record.id);
       });
-
-      /*   test('should be call to onClickRecord after click on row ', () => {
-      render(<ListItem {...props} />);
-      const clickEvent = new MouseEvent('click');
-      Object.assign(clickEvent, {stopPropagation: jest.fn()});
-      const buttonElement = screen.getByTestId('buttonElement');
-      fireEvent(buttonElement, clickEvent);
-      expect(event.stopPropagation).toHaveBeenCalled();
-   //   fireEvent.click(buttonElement, {stopPropagation})*/
     });
   });
 
