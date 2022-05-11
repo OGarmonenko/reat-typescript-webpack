@@ -5,11 +5,9 @@ import '@testing-library/jest-dom/extend-expect';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 const componentCardPage = (
-  <>
-    <Router>
-      <CardPage />
-    </Router>
-  </>
+  <Router>
+    <CardPage />
+  </Router>
 );
 
 describe('Test CardPage', () => {

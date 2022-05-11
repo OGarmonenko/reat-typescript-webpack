@@ -20,14 +20,14 @@ const MappingModal: FC<Modal_Type> = ({ configModal, onClose, onCancel }) => {
       case TypeModal.ERROR: {
         return {
           header: (
-            <div className={styles.modalHeader} style={{ background: HeaderColor.ERROR }}>
-              <p>{TypeModal.ERROR}</p>{' '}
+            <div data-testid="data-header" className={styles.modalHeader} style={{ background: HeaderColor.ERROR }}>
+              <p>{TypeModal.ERROR}</p>
               <img src={closeIcon} className={styles.close} onClick={onClose} alt={ALT.CLOSE} />
             </div>
           ),
           content: (
             <>
-              <img src={errorIcon} className={styles.contentIcon} alt={ALT.ERROR} /> <p> {configModal.data.message} </p>{' '}
+              <img src={errorIcon} className={styles.contentIcon} alt={ALT.ERROR} /> <p> {configModal.data.message} </p>
             </>
           ),
           footer: <button onClick={onClose}> {Button.OK} </button>,
@@ -36,15 +36,15 @@ const MappingModal: FC<Modal_Type> = ({ configModal, onClose, onCancel }) => {
       case TypeModal.WARNING: {
         return {
           header: (
-            <div className={styles.modalHeader} style={{ background: HeaderColor.WARNING }}>
-              <p>{TypeModal.WARNING}</p>{' '}
+            <div data-testid="data-header" className={styles.modalHeader} style={{ background: HeaderColor.WARNING }}>
+              <p>{TypeModal.WARNING}</p>
               <img src={closeIcon} className={styles.close} onClick={onClose} alt={ALT.CLOSE} />
             </div>
           ),
           content: (
             <>
-              <img src={warnIcon} className={styles.contentIcon} alt={ALT.WARNING} />{' '}
-              <p> {configModal.data.message} </p>{' '}
+              <img src={warnIcon} className={styles.contentIcon} alt={ALT.WARNING} />
+              <p> {configModal.data.message} </p>
             </>
           ),
           footer: (
@@ -57,13 +57,13 @@ const MappingModal: FC<Modal_Type> = ({ configModal, onClose, onCancel }) => {
       case TypeModal.INFO: {
         return {
           header: (
-            <div className={styles.modalHeader}>
+            <div data-testid="data-header" className={styles.modalHeader}>
               <p>{TypeModal.INFO}</p> <img src={closeIcon} className={styles.close} onClick={onClose} alt={ALT.CLOSE} />
             </div>
           ),
           content: (
             <>
-              <img src={infoIcon} className={styles.contentIcon} alt={ALT.INFO} /> <p> {configModal.data.message} </p>{' '}
+              <img src={infoIcon} className={styles.contentIcon} alt={ALT.INFO} /> <p> {configModal.data.message} </p>
             </>
           ),
           footer: <button onClick={onClose}> {Button.OK} </button>,
@@ -74,9 +74,9 @@ const MappingModal: FC<Modal_Type> = ({ configModal, onClose, onCancel }) => {
 
   if (!configModal.visible) return null;
   return (
-    <>
+    <div data-testid="data-mappingModal">
       <Modal {...Props} />
-    </>
+    </div>
   );
 };
 

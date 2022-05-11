@@ -9,7 +9,7 @@
     "build": "webpack --config webpack.prod.js",
     "lint": "eslint src --ext .ts,.tsx",
     "format": "prettier --config \".prettierrc\" --write --check",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "jest": {
     "verbose": true,
@@ -37,7 +37,10 @@
       "\\.ts$": "ts-jest",
       ".+\\.(css)$": "jest-css-modules-transform",
       ".+\\.(png)$": "jest-transform-stub"
-    }
+    },
+    "collectCoverageFrom": [
+      "**/*.{ts,tsx}"
+    ]
   },
   "husky": {
     "hooks": {

@@ -4,7 +4,7 @@ import { Modal_Props } from '@interfaces/interfaceModalProps';
 
 const Modal: FC<Modal_Props> = ({ header, content, footer }) => {
   return (
-    <div data-testi="data-modal" className={styles.modal}>
+    <div data-testid="data-modal" className={styles.modal}>
       <div className={styles.modalDialog}>
         {header}
         <div className={styles.modalBody}>

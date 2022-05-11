@@ -2,13 +2,8 @@ import React from 'react';
 import CardItem from '@components/toCardPage/CardItem';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { Record_Props } from '@interfaces/interfaceRecordProps';
 
-interface CardItem_Props {
-  selectedRecord: Record_Props | null;
-}
-
-const props: CardItem_Props = {
+const props = {
   selectedRecord: { id: 1, item: 'test1', date: 1649248316946 },
 };
 

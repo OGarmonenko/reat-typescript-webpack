@@ -1,7 +1,7 @@
 import apiService from '@api/apiService';
 import { Record_Props } from '@interfaces/interfaceRecordProps';
-import constants from '@constants';
 import { AxiosResponse } from 'axios';
+import constants from '@constants';
 
 export const httpService = {
   getRecords: (): Promise<Record_Props[]> => {
