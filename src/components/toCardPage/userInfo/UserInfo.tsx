@@ -1,11 +1,12 @@
 import React, { FC, useEffect, useState } from 'react';
-import styles from '@components/toCardPage/CardItem.module.css';
+import styles from '@components/toCardPage/recordItem/RecordItem.module.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import { IUserInfo_Props } from '@interfaces/IUserInfoProps';
-import UserInfoItem from '@components/toCardPage/UserInfoItem';
+import UserInfoItem from '@components/toCardPage/userInfo/UserInfoItem';
 import { Button } from '@enums';
 import CustomButton from '@components/custom/button/CustomButton';
 import constants from '@constants';
+import { formatedDatetoStr } from '@utils/dateUtils';
 
 interface CardUserInfo_Props {
   selectedUserInfo?: IUserInfo_Props | null;
@@ -14,7 +15,7 @@ interface CardUserInfo_Props {
   clickCancel?: () => void;
 }
 
-const CardUserInfo: FC<CardUserInfo_Props> = ({ edit, clickSave, clickCancel, selectedUserInfo }) => {
+const UserInfo: FC<CardUserInfo_Props> = ({ edit, clickSave, clickCancel, selectedUserInfo }) => {
   const [newPersonalData, setNewPersonalData] = useState(selectedUserInfo);
 
   useEffect(() => {
@@ -26,15 +27,14 @@ const CardUserInfo: FC<CardUserInfo_Props> = ({ edit, clickSave, clickCancel, se
   };
 
   const handleDateChange = (item: Date) => {
-    setNewPersonalData({ ...newPersonalData, birthday: item.toLocaleDateString('en-GB') });
+    setNewPersonalData({ ...newPersonalData, birthday: formatedDatetoStr(item) });
   };
 
   const handleClickSave = () => {
     clickSave(newPersonalData);
   };
 
-  /* eslint-disable  @typescript-eslint/no-explicit-any */
-  const getItem = (item: any) => {
+  const getItem = (item: string | number | Date) => {
     if (!newPersonalData[item as keyof IUserInfo_Props]) return edit ? '' : '-';
     return newPersonalData[item as keyof IUserInfo_Props];
   };
@@ -65,4 +65,4 @@ const CardUserInfo: FC<CardUserInfo_Props> = ({ edit, clickSave, clickCancel, se
   );
 };
 
-export default CardUserInfo;
+export default UserInfo;

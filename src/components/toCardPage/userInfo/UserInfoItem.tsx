@@ -1,19 +1,19 @@
 import React, { FC } from 'react';
-import styles from '@components/toCardPage/UserInfoItem.module.css';
-import DatePickerInput from '@components/common/DatePickerInput';
-import PhoneInput from '@components/common/PhoneInput';
+import styles from '@components/toCardPage/userInfo/UserInfoItem.module.css';
+import DatePickerInput from '@components/custom/input/DatePickerInput';
+import PhoneInput from '@components/custom/input/PhoneInput';
+import { LABEL_USER } from '@constants';
 
 interface UserInfoItem_Props {
   handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleDateChange?: (date: Date) => void;
-  userData: any;
+  userData: string;
   type?: string;
   item?: string;
   edit?: boolean;
 }
 
 const UserInfoItem: FC<UserInfoItem_Props> = ({ edit, item, userData, handleChange, type, handleDateChange }) => {
-  /* eslint-disable  @typescript-eslint/no-explicit-any */
   const getInput = (type: string): any => {
     switch (type) {
       case 'phone':
@@ -27,7 +27,7 @@ const UserInfoItem: FC<UserInfoItem_Props> = ({ edit, item, userData, handleChan
   return (
     <>
       <div className={styles.cardRowUser}>
-        <label className={styles.subTitle}>{item[0].toUpperCase() + item.slice(1)}:</label>
+        <label className={styles.subTitle}>{LABEL_USER[item]}</label>
         {edit && getInput(type)}
         {!edit && <span className={styles.dataRecord}>{userData}</span>}
       </div>

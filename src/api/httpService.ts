@@ -15,8 +15,7 @@ export const httpService = {
       .delete(`${constants.API.RECORD_URL}${payload}`)
       .then((response: AxiosResponse) => response.status);
   },
-  /* eslint-disable  @typescript-eslint/no-explicit-any */
-  updateRecord: (payload: any) => {
+  updateRecord: (payload: { [key: string]: number | Record_Props }) => {
     return apiService
       .post(`${constants.API.RECORD_URL}${payload.id}`, payload.data)
       .then((response: AxiosResponse) => response.status);

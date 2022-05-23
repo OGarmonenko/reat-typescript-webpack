@@ -16,3 +16,14 @@ const CONSTANTS = {
 };
 
 export default CONSTANTS;
+
+export const LABEL_USER: { [key: string]: string } = {
+  surname: 'Surname',
+  name: 'Name',
+  lastname: 'LastName',
+  birthday: 'Birthday',
+  locality: 'Locality',
+  address: 'Address',
+  phone: 'Phone',
+  email: 'Email',
+};
