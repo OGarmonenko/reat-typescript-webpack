@@ -3,9 +3,8 @@ import styles from './CustomInput.module.css';
 
 interface CustomInput_Props {
   placeholder?: string;
-  /* eslint-disable  @typescript-eslint/no-explicit-any */
-  type: any;
-  value: string | any;
+  type: string;
+  value: string;
   name?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }

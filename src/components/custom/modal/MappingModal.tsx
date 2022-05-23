@@ -7,7 +7,7 @@ import warnIcon from '@assets/icons/warning.png';
 import infoIcon from '@assets/icons/info.png';
 import styles from '@components/custom/modal/Modal.module.css';
 import { ALT, Button } from '@enums';
-import CardUserInfo from '@components/toCardPage/CardUserInfo';
+import UserInfo from '@components/toCardPage/userInfo/UserInfo';
 import { IUserInfo_Props } from '@interfaces/IUserInfoProps';
 
 interface Modal_Type {
@@ -82,7 +82,7 @@ const MappingModal: FC<Modal_Type> = ({ configModal, onClose, onCancel, onSave }
           ),
           content: (
             <>
-              <CardUserInfo
+              <UserInfo
                 selectedUserInfo={configModal.data?.userInfo}
                 edit={true}
                 clickSave={onSave}

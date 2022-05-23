@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react';
 import { Record_Props } from '@interfaces/interfaceRecordProps';
 import Navbar from '@components/common/navbar/Navbar';
-import CardItem from '@components/toCardPage/CardItem';
+import RecordItem from '@components/toCardPage/recordItem/RecordItem';
 import { useParams } from 'react-router-dom';
 import { storeService } from '@store/storeService';
-import CardUserInfo from '@components/toCardPage/CardUserInfo';
+import UserInfo from '@components/toCardPage/userInfo/UserInfo';
 import MappingModal from '@components/custom/modal/MappingModal';
 import styles from './CardPage.module.css';
 import { configModal_Props, TypeModal } from '@interfaces/interfaceModalProps';
@@ -17,7 +17,6 @@ const CardPage: FC = () => {
   const { recordID } = useParams<string>();
   const [selectedRecord, setSelectedRecord] = useState<Record_Props | null>(storeService.findRecord(Number(recordID)));
   const [configModal, setConfigModal] = useState({} as configModal_Props);
-  const [updateData, setUpdateData] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const onClose = () => {
@@ -55,22 +54,22 @@ const CardPage: FC = () => {
     const result = await request(dataCopy, selectedRecord.id);
     if (result === HttpStatusCode.OK) {
       setSelectedRecord(dataCopy);
-      setUpdateData(!updateData);
     }
   };
 
+  if (isLoading) return <p> Loading...</p>;
   return (
     <div data-testid="cardPage">
       <Navbar />
       {!isLoading && (
         <>
-          <CardItem selectedRecord={selectedRecord} />
+          <RecordItem selectedRecord={selectedRecord} />
           <div className={styles.personalCardDiv}>
             <div className={styles.subHeaderDiv}>
               <p className={styles.title}>Personal data</p>
               <CustomButton onClick={onClickEdit}>Edit</CustomButton>
             </div>
-            <CardUserInfo edit={false} selectedUserInfo={selectedRecord.userInfo} />
+            <UserInfo edit={false} selectedUserInfo={selectedRecord.userInfo} />
           </div>
         </>
       )}

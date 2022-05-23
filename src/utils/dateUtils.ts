@@ -8,3 +8,8 @@ export function formatedStrToDate(str: string): Date | null {
   if (!str) return new Date();
   return moment(str, 'DD/MM/YYYY').toDate();
 }
+
+export function formatedDatetoStr(date: Date): string {
+  if (!date) return null;
+  return date.toLocaleDateString('en-GB');
+}
