@@ -18,9 +18,6 @@ module.exports = merge(common, {
         headers: {
           "Connection": "keep-alive"
         },
-      pathRewrite: {
-          '^/api' : ''
-        }
       },
     },
     historyApiFallback: true,

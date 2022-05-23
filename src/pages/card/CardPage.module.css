@@ -1,0 +1,17 @@
+.title {
+    padding: 0 0 0 25px;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+}
+.subHeaderDiv {
+    width: 350px;
+    padding-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.personalCardDiv {
+    display: flex;
+    flex-direction: column
+}

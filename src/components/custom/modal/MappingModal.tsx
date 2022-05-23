@@ -7,14 +7,17 @@ import warnIcon from '@assets/icons/warning.png';
 import infoIcon from '@assets/icons/info.png';
 import styles from '@components/custom/modal/Modal.module.css';
 import { ALT, Button } from '@enums';
+import CardUserInfo from '@components/toCardPage/CardUserInfo';
+import { IUserInfo_Props } from '@interfaces/IUserInfoProps';
 
 interface Modal_Type {
   onClose: () => void;
   onCancel?: () => void;
+  onSave?: (personalData: IUserInfo_Props) => void;
   configModal: configModal_Props;
 }
 
-const MappingModal: FC<Modal_Type> = ({ configModal, onClose, onCancel }) => {
+const MappingModal: FC<Modal_Type> = ({ configModal, onClose, onCancel, onSave }) => {
   const Props: Modal_Props = useMemo(() => {
     switch (configModal.type) {
       case TypeModal.ERROR: {
@@ -69,8 +72,28 @@ const MappingModal: FC<Modal_Type> = ({ configModal, onClose, onCancel }) => {
           footer: <button onClick={onClose}> {Button.OK} </button>,
         };
       }
+      case TypeModal.INFO_USER: {
+        return {
+          header: (
+            <div data-testid="data-header" className={styles.modalHeader}>
+              <p>{TypeModal.INFO_USER}</p>{' '}
+              <img src={closeIcon} className={styles.close} onClick={onClose} alt={ALT.CLOSE} />
+            </div>
+          ),
+          content: (
+            <>
+              <CardUserInfo
+                selectedUserInfo={configModal.data?.userInfo}
+                edit={true}
+                clickSave={onSave}
+                clickCancel={onCancel}
+              />
+            </>
+          ),
+        };
+      }
     }
-  }, [configModal.type]);
+  }, [configModal.type, configModal.data?.userInfo]);
 
   if (!configModal.visible) return null;
   return (

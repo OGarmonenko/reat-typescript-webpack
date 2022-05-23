@@ -1,5 +1,6 @@
-import {Record_Props} from '@interfaces/interfaceRecordProps';
+import { Record_Props } from '@interfaces/interfaceRecordProps';
 
 export interface State {
-    records: Record_Props[];
+  records: Record_Props[];
+  selectedRecord: Record_Props;
 }

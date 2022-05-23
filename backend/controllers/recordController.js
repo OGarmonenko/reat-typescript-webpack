@@ -28,6 +28,14 @@ class recordController {
       res.status(constants.STATUS_CODE.SERVER_ERROR).json(e.message);
     }
   };
+  async updateUserData (req, res) {
+    try {
+      const data = await recordService.updateUserData(req.params.id, req.body);
+      return res.json(data);
+    } catch (e) {
+      res.status(constants.STATUS_CODE.SERVER_ERROR).json(e.message);
+    }
+  }
 }
 
 module.exports = new recordController();

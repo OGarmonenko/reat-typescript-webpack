@@ -1,17 +1,17 @@
 import React, { FC, useMemo } from 'react';
 import styles from './CardItem.module.css';
 import getNumberRecord from '@utils/numberUtils';
-import getDateRecord from '@utils/dateUtils';
+import { getDateRecord } from '@utils/dateUtils';
 import { Record_Props } from '@interfaces/interfaceRecordProps';
 
 interface CardItem_Props {
   selectedRecord: Record_Props | null;
+  onClick?: () => void;
 }
 
 const CardItem: FC<CardItem_Props> = ({ selectedRecord }) => {
   const numbers = useMemo(() => getNumberRecord(selectedRecord?.item), [selectedRecord]);
   const date = useMemo(() => getDateRecord(selectedRecord?.date), [selectedRecord]);
-
   return (
     <>
       <div data-testid="data-carditem" className={styles.title}>

@@ -3,7 +3,7 @@ import CustomButton from '@components/custom/button/CustomButton';
 import styles from './ListItem.module.css';
 import { Record_Props } from '@interfaces/interfaceRecordProps';
 import getNumberRecord from '@utils/numberUtils';
-import getDateRecord from '@utils/dateUtils';
+import { getDateRecord } from '@utils/dateUtils';
 import { Button } from '@enums';
 
 interface ListItem_Props {
