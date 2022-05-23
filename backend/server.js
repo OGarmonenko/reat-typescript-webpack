@@ -4,8 +4,7 @@ const port = 3033;
 const app = express();
 
 app.use(express.json());
-
-app.use('/record', recordRouter);
+app.use('/api/record', recordRouter);
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);

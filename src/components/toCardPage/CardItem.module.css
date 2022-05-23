@@ -1,3 +1,7 @@
+.wrapped {
+    display: flex;
+    justify-content: space-between;
+}
 .wrapperCard {
     padding: 25px 25px;
     display: flex;
@@ -21,6 +25,19 @@
 .cardRow {
     display: flex;
     align-items: center;
+}
+.buttonsWrapper {
+    padding-left: 25px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
 }
-
+.wrapperCardUser {
+    padding: 15px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    word-wrap: break-word;
+}

@@ -3,6 +3,7 @@ export const enum HttpStatusCode {
 }
 export enum Button {
   OK = 'OK',
+  SAVE = 'Save',
   CANCEL = 'Cancel',
   DELETE = 'Delete',
   ADD = 'Add',
@@ -19,4 +20,15 @@ export const enum ALT {
   WARNING = 'warning',
   INFO = 'info',
   MAIN = 'main',
+}
+
+export const enum UserInfoLabel {
+  SURNAME = 'Surname',
+  NAME = 'Name',
+  LASTNAME = 'Lastname',
+  BIRTHDAY = 'Birthday',
+  LOCALITY = 'Locality',
+  ADDRESS = 'Address',
+  PHONE = 'Phone',
+  EMAIL = 'Email',
 }

@@ -3,6 +3,7 @@ import { State } from '@interfaces/interfaceStore';
 
 const initialState: State = {
   records: [],
+  selectedRecord: {} as Record_Props,
 };
 
 export const storeService = {
@@ -10,6 +11,7 @@ export const storeService = {
     initialState.records = payload;
   },
   findRecord: (payload: number, state = initialState) => {
-    return state.records.find((r) => r.id === payload);
+    state.selectedRecord = state.records.find((r) => r.id === payload);
+    return state.selectedRecord;
   },
 };

@@ -9,7 +9,7 @@
     "build": "webpack --config webpack.prod.js",
     "lint": "eslint src --ext .ts,.tsx",
     "format": "prettier --config \".prettierrc\" --write --check",
-    "test": "jest --coverage"
+    "test": "jest --coverage "
   },
   "jest": {
     "verbose": true,
@@ -53,11 +53,15 @@
       "npm run lint",
       "git add"
     ],
-    "*.{css, json}": [
+    "*.{css}": [
       "npm run format",
       "git add"
     ]
   },
+  "eslintIgnore": [
+    "*.test.ts",
+    "*.test.tsx"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -70,6 +74,7 @@
     "@testing-library/react": "12.1.1",
     "@types/jest": "27.4.1",
     "@types/react": "17.0.41",
+    "@types/react-datepicker": "4.4.1",
     "@types/react-dom": "17.0.14",
     "@typescript-eslint/eslint-plugin": "5.18.0",
     "@typescript-eslint/parser": "5.19.0",
@@ -99,7 +104,10 @@
     "axios": "0.26.1",
     "moment": "2.29.1",
     "react": "17.0.2",
+    "react-datepicker": "4.7.0",
     "react-dom": "17.0.2",
-    "react-router-dom": "6.2.2"
+    "react-imask": "6.4.2",
+    "react-router-dom": "6.2.2",
+    "ts-input-mask": "^2.1.0"
   }
 }

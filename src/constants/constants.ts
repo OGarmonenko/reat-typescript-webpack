@@ -5,9 +5,14 @@ const CONSTANTS = {
     ERROR_PATH: '/*',
   },
   API: {
-    BASE_URL: 'api/',
+    BASE_URL: 'http://localhost:3000/api/',
     RECORD_URL: 'record/',
-  }
+  },
+  USER_ITEM_ARRAY: ['surname', 'name', 'lastname', 'birthday', 'locality', 'address', 'phone', 'email'],
+  MASKS: {
+    PHONE: '+375 (00) 000-00-00',
+    EMAIL: /^\S*@?\S*$/,
+  },
 };
 
 export default CONSTANTS;

@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from './Modal';
+import Modal from '@components/custom/modal/Modal';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 

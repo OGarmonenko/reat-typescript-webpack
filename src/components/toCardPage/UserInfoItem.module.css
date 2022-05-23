@@ -1,0 +1,10 @@
+.cardRowUser {
+  width: 300px;
+    min-width: 300px;
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+}
+.subTitle {
+    font-weight: bold;
+}

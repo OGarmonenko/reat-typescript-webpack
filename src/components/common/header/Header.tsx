@@ -5,6 +5,7 @@ import moment from 'moment';
 import styles from './Header.module.css';
 import { Record_Props } from '@interfaces/interfaceRecordProps';
 import { Button } from '@enums';
+import { IUserInfo_Props } from '@interfaces/IUserInfoProps';
 
 interface Header_Props {
   handleClickAdd: (record: Record_Props) => void;
@@ -20,6 +21,7 @@ const Header: FC<Header_Props> = ({ handleClickAdd }) => {
       id: date,
       item: record,
       date: date,
+      userInfo: {} as IUserInfo_Props,
     };
     handleClickAdd(newRecord);
     setRecord('');
