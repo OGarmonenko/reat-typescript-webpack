@@ -105,6 +105,7 @@ describe('Test MainPage with initial state', () => {
     await waitForElementToBeRemoved(() => screen.getByText('Loading...'));
     await waitFor(() => expect(removeRecord).toHaveBeenCalled());
     expect(screen.queryByTestId('data-modal')).toBeInTheDocument();
+    expect(screen.getByTestId('data-title').textContent).toEqual('Error');
   });
 
   afterEach(() => {

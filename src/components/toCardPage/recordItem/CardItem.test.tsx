@@ -1,5 +1,5 @@
 import React from 'react';
-import RecordItem from '../../../components/toCardPage/recordItem/RecordItem';
+import RecordItem from './RecordItem';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 

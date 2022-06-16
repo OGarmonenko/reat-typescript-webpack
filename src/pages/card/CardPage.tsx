@@ -57,7 +57,7 @@ const CardPage: FC = () => {
     }
   };
 
-  if (isLoading) return <p> Loading...</p>;
+  if (isLoading) return <p data-testid="data-loading"> Loading...</p>;
   return (
     <div data-testid="cardPage">
       <Navbar />
@@ -69,7 +69,7 @@ const CardPage: FC = () => {
               <p className={styles.title}>Personal data</p>
               <CustomButton onClick={onClickEdit}>Edit</CustomButton>
             </div>
-            <UserInfo edit={false} selectedUserInfo={selectedRecord.userInfo} />
+            <UserInfo edit={false} selectedUserInfo={selectedRecord?.userInfo} />
           </div>
         </>
       )}

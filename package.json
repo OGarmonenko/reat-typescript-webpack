@@ -33,6 +33,9 @@
       "@enums": "<rootDir>/src/enums/enums"
     },
     "testEnvironment": "jsdom",
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|mjs|cjs|ts|tsx)$"
+    ],
     "transform": {
       "\\.ts$": "ts-jest",
       ".+\\.(css)$": "jest-css-modules-transform",

@@ -4,5 +4,5 @@ export interface Record_Props {
   id: number;
   item: string;
   date: number;
-  userInfo: IUserInfo_Props;
+  userInfo?: IUserInfo_Props;
 }
