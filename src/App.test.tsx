@@ -4,6 +4,7 @@ import '@testing-library/jest-dom/extend-expect';
 import { Router } from 'react-router-dom';
 import App from '@app';
 import { createMemoryHistory } from 'history';
+jest.mock('@components/toCardPage/userInfo/UserInfo', () => () => <div data-testid="mockUserInfo" />);
 
 describe('Test App', () => {
   describe('renders MainPage', () => {
@@ -30,6 +31,7 @@ describe('Test App', () => {
         <App />
       </Router>
     );
+
     test('do not renders MainPage if path = "/card/:id"', () => {
       render(componentApp);
       expect(screen.queryByTestId('mainPage')).not.toBeInTheDocument();

@@ -5,6 +5,7 @@ const mockState = {
     { id: 1, item: 'test1', date: 1649248316946 },
     { id: 2, item: 'test2', date: 1649918819350 },
   ],
+  selectedRecord: { id: -1, item: '', date: -1 },
 };
 
 const mockID = 2;

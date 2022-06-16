@@ -6,18 +6,30 @@ import MappingModal from '@components/custom/modal/MappingModal';
 
 const mockOnClose = jest.fn();
 const mockOnCancel = jest.fn();
+const mockOnSave = jest.fn();
 
 const mockConfigModal = {
   type: TypeModal.ERROR,
   visible: true,
   data: {
     message: 'Error 500',
+    userInfo: {
+      name: '',
+      surname: '',
+      lastname: '',
+      birthday: '',
+      locality: '',
+      address: '',
+      phone: '+375 (12) 342-11-62',
+      email: '',
+    },
   },
 };
 
 const props = {
   onClose: mockOnClose,
   onCancel: mockOnCancel,
+  onSave: mockOnSave,
   configModal: mockConfigModal,
 };
 
@@ -77,6 +89,18 @@ describe('Test MappingModal', () => {
       props.configModal.type = TypeModal.INFO;
       render(<MappingModal {...props} />);
       expect(screen.queryByText('Cancel')).not.toBeInTheDocument();
+    });
+  });
+  describe('testing TypeModal.INFO_USER', () => {
+    test('should be called function onSave with new user data "', () => {
+      props.configModal.type = TypeModal.INFO_USER;
+      render(<MappingModal {...props} />);
+      expect(screen.getByTestId('data-userInfo')).toBeInTheDocument();
+      const phoneInput = screen.getByDisplayValue(props.configModal.data.userInfo.phone);
+      expect(screen.getByTestId('phoneInput')).toBeInTheDocument();
+      fireEvent.change(phoneInput, { target: { value: '+375 (12) 342-11-66' } });
+      fireEvent.click(screen.getByRole('button', { name: 'Save' }));
+      expect(mockOnSave).toHaveBeenCalledWith({ ...props.configModal.data.userInfo, phone: '+375 (12) 342-11-66' });
     });
   });
 });

@@ -21,15 +21,21 @@ const UserInfoItem: FC<UserInfoItem_Props> = ({ edit, item, userData, handleChan
       case 'birthday':
         return <DatePickerInput handleDateChange={handleDateChange} value={userData} />;
       default:
-        return <input onChange={handleChange} value={userData} name={item} />;
+        return <input data-testid="inputItem" onChange={handleChange} value={userData} name={item} />;
     }
   };
   return (
     <>
-      <div className={styles.cardRowUser}>
-        <label className={styles.subTitle}>{LABEL_USER[item]}</label>
+      <div data-testid="data-cardRowUser" className={styles.cardRowUser}>
+        <label data-testid="labelItem" className={styles.subTitle}>
+          {LABEL_USER[item]}
+        </label>
         {edit && getInput(type)}
-        {!edit && <span className={styles.dataRecord}>{userData}</span>}
+        {!edit && (
+          <span data-testid="spanItem" className={styles.dataRecord}>
+            {userData}
+          </span>
+        )}
       </div>
     </>
   );

@@ -24,7 +24,7 @@ const MappingModal: FC<Modal_Type> = ({ configModal, onClose, onCancel, onSave }
         return {
           header: (
             <div data-testid="data-header" className={styles.modalHeader} style={{ background: HeaderColor.ERROR }}>
-              <p>{TypeModal.ERROR}</p>
+              <p data-testid="data-title">{TypeModal.ERROR}</p>
               <img src={closeIcon} className={styles.close} onClick={onClose} alt={ALT.CLOSE} />
             </div>
           ),
@@ -77,7 +77,13 @@ const MappingModal: FC<Modal_Type> = ({ configModal, onClose, onCancel, onSave }
           header: (
             <div data-testid="data-header" className={styles.modalHeader}>
               <p>{TypeModal.INFO_USER}</p>{' '}
-              <img src={closeIcon} className={styles.close} onClick={onClose} alt={ALT.CLOSE} />
+              <img
+                data-testid="close-button"
+                src={closeIcon}
+                className={styles.close}
+                onClick={onClose}
+                alt={ALT.CLOSE}
+              />
             </div>
           ),
           content: (

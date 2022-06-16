@@ -16,7 +16,7 @@ const DatePickerInput: FC<DatePicker_Props> = ({ handleDateChange, value }) => {
   };
 
   return (
-    <div>
+    <div data-testid="datePickerInput">
       <DatePicker dateFormat="dd/MM/yyyy" selected={bdayDate} onChange={changeDate} placeholderText="dd/mm/yyyy" />
     </div>
   );

@@ -8,7 +8,7 @@ import CustomButton from '@components/custom/button/CustomButton';
 import constants from '@constants';
 import { formatedDatetoStr } from '@utils/dateUtils';
 
-interface CardUserInfo_Props {
+export interface CardUserInfo_Props {
   selectedUserInfo?: IUserInfo_Props | null;
   edit?: boolean;
   clickSave?: (personalData: IUserInfo_Props) => void;
@@ -40,7 +40,7 @@ const UserInfo: FC<CardUserInfo_Props> = ({ edit, clickSave, clickCancel, select
   };
 
   return (
-    <div>
+    <div data-testid="data-userInfo">
       <form className={styles.wrapperCard}>
         {constants.USER_ITEM_ARRAY.map((item: string, index: number) => (
           <UserInfoItem

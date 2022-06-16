@@ -9,7 +9,7 @@ interface PhoneInput_Props {
 
 const PhoneInput: FC<PhoneInput_Props> = ({ onChange, value, item }) => {
   return (
-    <>
+    <div data-testid="phoneInput">
       <IMaskInput
         mask={constants.MASKS.PHONE}
         value={value}
@@ -17,7 +17,7 @@ const PhoneInput: FC<PhoneInput_Props> = ({ onChange, value, item }) => {
         placeholder="+375 (__) ___ __ __"
         name={item}
       />
-    </>
+    </div>
   );
 };
 

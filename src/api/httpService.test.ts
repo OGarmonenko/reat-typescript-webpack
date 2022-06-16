@@ -32,8 +32,8 @@ describe('Test httpService', () => {
     });
   });
 
-  /* describe('testing post request', () => {
-    const mockPayload = { id: 3, item: 'test3', date: 1649918819381, userInfo: {}};
+  describe('testing post request', () => {
+    const mockPayload = { id: 3, item: 'test3', date: 1649918819381 };
 
     test('should be call to constants.API.RECORD_URL and need payload', async () => {
       const post = jest.spyOn(apiService, 'post');
@@ -48,9 +48,9 @@ describe('Test httpService', () => {
       const data = await httpService.addRecord(mockPayload);
       expect(data).toBe(mockedResponse.status);
     });
-  });*/
+  });
 
-  describe('testing delete request', () => {
+  describe('testing delete Record request', () => {
     const mockPayload = 1649918819381;
 
     test('should be call to `${constants.API.RECORD_URL}${mockPayload}`', async () => {
@@ -65,6 +65,44 @@ describe('Test httpService', () => {
       deleteReq.mockResolvedValue(mockedResponse);
       const data = await httpService.removeRecord(mockPayload);
       expect(data).toBe(mockedResponse.status);
+    });
+
+    describe('testing update Record request', () => {
+      const mockPayload = {
+        id: 1,
+        data: {
+          id: 1,
+          item: 'test1',
+          date: 1649248316946,
+          userInfo: {
+            name: '',
+            surname: '',
+            lastname: '',
+            birthday: '',
+            locality: '',
+            address: '',
+            phone: '',
+            email: '',
+          },
+        },
+      };
+
+      test('should be call to `${constants.API.RECORD_URL}${mockPayload}`', async () => {
+        const updateReq = jest.spyOn(apiService, 'post');
+        updateReq.mockResolvedValue(mockedResponse);
+        await httpService.updateRecord(mockPayload);
+        expect(updateReq).toHaveBeenCalledWith(
+          `${constants.API.RECORD_URL}${mockPayload.id}`,
+          JSON.parse(JSON.stringify(mockPayload.data)),
+        );
+      });
+
+      test('result will be equals mockedResponse.status', async () => {
+        const updateReq = jest.spyOn(apiService, 'post');
+        updateReq.mockResolvedValue(mockedResponse);
+        const data = await httpService.updateRecord(mockPayload);
+        expect(data).toBe(mockedResponse.status);
+      });
     });
   });
 
