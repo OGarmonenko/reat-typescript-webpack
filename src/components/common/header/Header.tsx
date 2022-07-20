@@ -41,4 +41,4 @@ const Header: FC<Header_Props> = ({ handleClickAdd }) => {
   );
 };
 
-export default Header;
+export default React.memo(Header);
