@@ -53,17 +53,17 @@ const UserInfo: FC<CardUserInfo_Props> = ({ edit, clickSave, clickCancel, select
             handleDateChange={handleDateChange}
           />
         ))}
-        {edit && (
-          <div className={styles.buttonsWrapper}>
-            <CustomButton type="modalButton" onClick={handleClickSave}>
-              {Button.SAVE}
-            </CustomButton>
-            <CustomButton type="modalButton" onClick={clickCancel}>
-              {Button.CANCEL}
-            </CustomButton>
-          </div>
-        )}
       </form>
+      {edit && (
+        <div className={styles.buttonsWrapper}>
+          <CustomButton typeButton="modalButton" onClick={handleClickSave}>
+            {Button.SAVE}
+          </CustomButton>
+          <CustomButton typeButton="modalButton" onClick={clickCancel}>
+            {Button.CANCEL}
+          </CustomButton>
+        </div>
+      )}
     </div>
   );
 };

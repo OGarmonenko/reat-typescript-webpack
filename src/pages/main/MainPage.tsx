@@ -18,11 +18,14 @@ const MainPage: FC = () => {
   const [configModal, setConfigModal] = useState({} as configModal_Props);
 
   useEffect(() => {
+    setIsLoading(true);
     loadingData();
+    return () => {
+      setIsLoading(false);
+    };
   }, []);
 
   const loadingData = () => {
-    setIsLoading(true);
     httpService
       .getRecords()
       .then((res: Record_Props[]) => {
@@ -40,6 +43,7 @@ const MainPage: FC = () => {
   const addRecord = useCallback((record: Record_Props) => {
     request(ACTION.ADD_RECORD, record).then((result) => {
       if (result === HttpStatusCode.OK) {
+        setIsLoading(true);
         loadingData();
       }
     });
@@ -48,6 +52,7 @@ const MainPage: FC = () => {
   const removeRecord = async (recordID: number) => {
     const result = await request(ACTION.REMOVE_RECORD, recordID);
     if (result === HttpStatusCode.OK) {
+      setIsLoading(true);
       loadingData();
     }
   };

@@ -17,6 +17,7 @@ const props = {
 jest.mock('@components/custom/input/DatePickerInput', () => ({
   DatePickerInput: jest.fn(() => <div data-testid="DatePickerInput" />),
 }));
+
 describe('Test UserInfoItem', () => {
   test('should be renders span if !edit', () => {
     render(<UserInfoItem {...props} />);

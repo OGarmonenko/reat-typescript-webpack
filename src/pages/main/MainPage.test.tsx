@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor, waitForElementToBeRemoved, act } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import MainPage from '@pages/main/MainPage';
 import { Router } from 'react-router-dom';
@@ -30,6 +30,7 @@ describe('Test MainPage with initial state', () => {
   test('should be renders record and not renders "Not records"', async () => {
     getRecords.mockResolvedValue(mockData);
     render(componentMainPage);
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
     await waitForElementToBeRemoved(() => screen.getByText('Loading...'));
     await waitFor(() => expect(getRecords).toHaveBeenCalled());
     const records = await screen.findAllByTestId('data-row');
@@ -41,7 +42,8 @@ describe('Test MainPage with initial state', () => {
     const mockData: any = [];
     getRecords.mockResolvedValue(mockData);
     render(componentMainPage);
-    await waitForElementToBeRemoved(() => screen.getByText('Loading...'));
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
+    await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
     await waitFor(() => expect(getRecords).toHaveBeenCalled());
     expect(screen.queryByTestId('data-list')).not.toBeInTheDocument();
     expect(screen.getByTestId('emptyRecords')).toBeInTheDocument();
@@ -50,9 +52,9 @@ describe('Test MainPage with initial state', () => {
   test('refresh route when clicked on row', async () => {
     getRecords.mockResolvedValue(mockData);
     render(componentMainPage);
-    await waitForElementToBeRemoved(() => screen.getByText('Loading...'));
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
+    await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
     await waitFor(() => expect(getRecords).toHaveBeenCalled());
-    expect(history.location.pathname).toBe('/');
     fireEvent.click(screen.getByTestId('data-row'));
     expect(history.location.pathname).toBe('/card/1');
   });
@@ -61,7 +63,8 @@ describe('Test MainPage with initial state', () => {
     getRecords.mockResolvedValue(mockData);
     addRecord.mockResolvedValue(mockedResponse.status);
     render(componentMainPage);
-    await waitForElementToBeRemoved(() => screen.getByText('Loading...'));
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
+    await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
     await waitFor(() => expect(getRecords).toHaveBeenCalled());
     const input = screen.getByTestId('customInput');
     fireEvent.change(input, { target: { value: 'test2' } });
@@ -75,19 +78,20 @@ describe('Test MainPage with initial state', () => {
     getRecords.mockResolvedValue(mockData);
     removeRecord.mockResolvedValue(mockedResponse.status);
     render(componentMainPage);
-    await waitForElementToBeRemoved(() => screen.getByText('Loading...'));
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
+    await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
     await waitFor(() => expect(getRecords).toHaveBeenCalled());
     expect(screen.getByText('Delete')).toBeInTheDocument();
     fireEvent.click(screen.getByText('Delete'));
-    await waitForElementToBeRemoved(() => screen.getByText('Loading...'));
+    await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
     await waitFor(() => expect(removeRecord).toHaveBeenCalled());
-    //expect(removeRecord).toHaveBeenCalled();
   });
 
   test('should be modal window, if got error after get request', async () => {
     getRecords.mockRejectedValue(new Error('error'));
     render(componentMainPage);
-    await waitForElementToBeRemoved(() => screen.getByText('Loading...'));
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
+    await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
     await waitFor(() => expect(getRecords).toHaveBeenCalled());
     expect(screen.queryByTestId('data-modal')).toBeInTheDocument();
     fireEvent.click(screen.getByText('OK'));
@@ -98,7 +102,8 @@ describe('Test MainPage with initial state', () => {
     getRecords.mockResolvedValue(mockData);
     removeRecord.mockRejectedValue(new Error('error'));
     render(componentMainPage);
-    await waitForElementToBeRemoved(() => screen.getByText('Loading...'));
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
+    await waitForElementToBeRemoved(() => screen.queryByText('Loading...'));
     await waitFor(() => expect(getRecords).toHaveBeenCalled());
     expect(screen.getByText('Delete')).toBeInTheDocument();
     fireEvent.click(screen.getByText('Delete'));
