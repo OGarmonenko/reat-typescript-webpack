@@ -7,7 +7,6 @@ import { Button, ALT } from '@enums';
 
 const Navbar: FC = () => {
   const history = useNavigate();
-
   return (
     <div data-testid="data-navbar" className={styles.wrapperNavbar}>
       <div role="button" className={styles.wrapperSubNav} onClick={() => history(constants.ROUTES.MAIN_PATH)}>
@@ -18,4 +17,4 @@ const Navbar: FC = () => {
   );
 };
 
-export default Navbar;
+export default React.memo(Navbar);

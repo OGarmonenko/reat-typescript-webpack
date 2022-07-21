@@ -40,7 +40,7 @@ const UserInfo: FC<CardUserInfo_Props> = ({ edit, clickSave, clickCancel, select
   };
 
   return (
-    <div data-testid="data-userInfo">
+    <div data-testid="data-userInfo" className={styles.wrapperUserInfo}>
       <form className={styles.wrapperCard}>
         {constants.USER_ITEM_ARRAY.map((item: string, index: number) => (
           <UserInfoItem
@@ -54,11 +54,14 @@ const UserInfo: FC<CardUserInfo_Props> = ({ edit, clickSave, clickCancel, select
           />
         ))}
       </form>
-
       {edit && (
         <div className={styles.buttonsWrapper}>
-          <CustomButton onClick={handleClickSave}>{Button.SAVE}</CustomButton>
-          <CustomButton onClick={clickCancel}>{Button.CANCEL}</CustomButton>
+          <CustomButton typeButton="modalButton" onClick={handleClickSave}>
+            {Button.SAVE}
+          </CustomButton>
+          <CustomButton typeButton="modalButton" onClick={clickCancel}>
+            {Button.CANCEL}
+          </CustomButton>
         </div>
       )}
     </div>

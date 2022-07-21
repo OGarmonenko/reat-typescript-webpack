@@ -62,7 +62,7 @@ const CardPage: FC = () => {
     <div data-testid="cardPage">
       <Navbar />
       {!isLoading && (
-        <>
+        <div className={styles.wrapperCardPage}>
           <RecordItem selectedRecord={selectedRecord} />
           <div className={styles.personalCardDiv}>
             <div className={styles.subHeaderDiv}>
@@ -71,7 +71,7 @@ const CardPage: FC = () => {
             </div>
             <UserInfo edit={false} selectedUserInfo={selectedRecord?.userInfo} />
           </div>
-        </>
+        </div>
       )}
       <MappingModal onClose={onClose} onCancel={onCancel} configModal={configModal} onSave={onSave} />
     </div>

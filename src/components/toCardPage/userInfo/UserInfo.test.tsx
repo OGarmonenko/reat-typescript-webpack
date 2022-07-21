@@ -16,6 +16,7 @@ const mockSelectedUserInfo = {
 };
 const mockClickSave = jest.fn();
 const mockClickCancel = jest.fn();
+
 const props = {
   selectedUserInfo: mockSelectedUserInfo,
   edit: true,

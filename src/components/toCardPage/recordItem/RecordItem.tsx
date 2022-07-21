@@ -12,6 +12,7 @@ interface CardItem_Props {
 const RecordItem: FC<CardItem_Props> = ({ selectedRecord }) => {
   const numbers = useMemo(() => getNumberRecord(selectedRecord?.item), [selectedRecord]);
   const date = useMemo(() => getDateRecord(selectedRecord?.date), [selectedRecord]);
+
   return (
     <>
       <div data-testid="data-carditem" className={styles.title}>

@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, useCallback } from 'react';
 import { Record_Props } from '@interfaces/interfaceRecordProps';
 import Header from '@components/common/header/Header';
 import styles from './Content.module.css';
@@ -14,12 +14,18 @@ import { TypeModal, configModal_Props } from '@interfaces/interfaceModalProps';
 const MainPage: FC = () => {
   const [records, setRecords] = useState<Record_Props[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [needRefresh, setNeedRefresh] = useState<boolean>(false);
   const history = useNavigate();
   const [configModal, setConfigModal] = useState({} as configModal_Props);
 
   useEffect(() => {
     setIsLoading(true);
+    loadingData();
+    return () => {
+      setIsLoading(false);
+    };
+  }, []);
+
+  const loadingData = () => {
     httpService
       .getRecords()
       .then((res: Record_Props[]) => {
@@ -32,19 +38,22 @@ const MainPage: FC = () => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [needRefresh]);
-
-  const addRecord = async (record: Record_Props) => {
-    const result = await request(ACTION.ADD_RECORD, record);
-    if (result === HttpStatusCode.OK) {
-      setNeedRefresh(!needRefresh);
-    }
   };
+
+  const addRecord = useCallback((record: Record_Props) => {
+    request(ACTION.ADD_RECORD, record).then((result) => {
+      if (result === HttpStatusCode.OK) {
+        setIsLoading(true);
+        loadingData();
+      }
+    });
+  }, []);
 
   const removeRecord = async (recordID: number) => {
     const result = await request(ACTION.REMOVE_RECORD, recordID);
     if (result === HttpStatusCode.OK) {
-      setNeedRefresh(!needRefresh);
+      setIsLoading(true);
+      loadingData();
     }
   };
 

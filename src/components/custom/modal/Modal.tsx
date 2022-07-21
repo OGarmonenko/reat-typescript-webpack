@@ -10,7 +10,7 @@ const Modal: FC<Modal_Props> = ({ header, content, footer }) => {
         <div className={styles.modalBody}>
           <div className={styles.modalContent}>{content}</div>
         </div>
-        <div className={styles.modalFooter}>{footer}</div>
+        {footer && <div className={styles.modalFooter}>{footer}</div>}
       </div>
     </div>
   );

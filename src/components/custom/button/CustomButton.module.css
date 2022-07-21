@@ -4,3 +4,15 @@
     width: 100px;
     height: 35px;
 }
+.modalButton {
+    margin-left: 15px;
+    padding: 5px 5px;
+    font-size: 14px;
+    width: 70px;
+    border-radius: 4px;
+}
+
+.modalButton:hover {
+    color: #ffffff;
+    background: #61dafb;
+}
