@@ -39,10 +39,12 @@
     "transform": {
       "\\.ts$": "ts-jest",
       ".+\\.(css)$": "jest-css-modules-transform",
-      ".+\\.(png)$": "jest-transform-stub"
+      ".+\\.(png|svg)$": "jest-transform-stub"
     },
     "collectCoverageFrom": [
-      "**/*.{ts,tsx}"
+      "**/*.{ts,tsx}",
+      "!src/index.tsx",
+      "!src/declaration.d.ts"
     ]
   },
   "husky": {
@@ -111,6 +113,6 @@
     "react-dom": "17.0.2",
     "react-imask": "6.4.2",
     "react-router-dom": "6.2.2",
-    "ts-input-mask": "^2.1.0"
+    "ts-input-mask": "2.1.0"
   }
 }

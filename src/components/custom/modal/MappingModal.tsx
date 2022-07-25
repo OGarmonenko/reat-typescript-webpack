@@ -1,7 +1,7 @@
 import React, { FC, useMemo } from 'react';
 import Modal from '@components/custom/modal/Modal';
 import { TypeModal, HeaderColor, Modal_Props, configModal_Props } from '@interfaces/interfaceModalProps';
-import closeIcon from '@assets/icons/close.png';
+import closeIcon from '@assets/icons/close.svg';
 import errorIcon from '@assets/icons/error.png';
 import warnIcon from '@assets/icons/warning.png';
 import infoIcon from '@assets/icons/info.png';
@@ -89,7 +89,7 @@ const MappingModal: FC<Modal_Type> = ({ configModal, onClose, onCancel, onSave }
           content: (
             <>
               <UserInfo
-                selectedUserInfo={configModal.data?.userInfo}
+                selectedUserInfo={configModal.data.userInfo}
                 edit={true}
                 clickSave={onSave}
                 clickCancel={onCancel}

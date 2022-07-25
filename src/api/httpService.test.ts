@@ -2,7 +2,12 @@ import { httpService } from '@api/httpService';
 import apiService from '@api/apiService';
 import constants from '@constants';
 import { AxiosResponse } from 'axios';
+import { Simulate } from 'react-dom/test-utils';
+import abort = Simulate.abort;
 
+//jest.spyOn(AbortController.prototype, 'abort')
+
+const controller = new AbortController();
 const mockData = [
   { id: 1, item: 'test1', date: 1649248316946 },
   { id: 2, item: 'test2', date: 1649918819350 },
@@ -15,19 +20,20 @@ const mockedResponse: AxiosResponse = {
   headers: {},
   config: {},
 };
+
 describe('Test httpService', () => {
   describe('testing get request', () => {
     test('should be call to constants.API.RECORD_URL', async () => {
       const get = jest.spyOn(apiService, 'get');
       get.mockResolvedValue(mockedResponse);
-      await httpService.getRecords();
-      expect(get).toHaveBeenCalledWith(constants.API.RECORD_URL);
+      await httpService.getRecords(controller.signal);
+      expect(get).toHaveBeenCalledWith(constants.API.RECORD_URL, { signal: controller.signal });
     });
 
     test('result will be equals mockData', async () => {
       const get = jest.spyOn(apiService, 'get');
       get.mockResolvedValue(mockedResponse);
-      const data = await httpService.getRecords();
+      const data = await httpService.getRecords(controller.signal);
       expect(data).toBe(mockedResponse.data);
     });
   });

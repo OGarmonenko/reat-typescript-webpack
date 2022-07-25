@@ -6,6 +6,8 @@ import styles from './Header.module.css';
 import { Record_Props } from '@interfaces/interfaceRecordProps';
 import { Button } from '@enums';
 import { IUserInfo_Props } from '@interfaces/IUserInfoProps';
+//import { useNavigate } from 'react-router-dom';
+//import constants from "@constants";
 
 interface Header_Props {
   handleClickAdd: (record: Record_Props) => void;
@@ -13,6 +15,7 @@ interface Header_Props {
 
 const Header: FC<Header_Props> = ({ handleClickAdd }) => {
   const [record, setRecord] = useState<string>('');
+  // const history = useNavigate();
 
   const createRecord = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -37,6 +40,7 @@ const Header: FC<Header_Props> = ({ handleClickAdd }) => {
       <CustomButton disabled={!record.length} onClick={createRecord}>
         {Button.ADD}
       </CustomButton>
+      {/*         <button type="button" onClick={()=> history(constants.ROUTES.CARD_PATH + `${1658231301837}`)}>STOPED</button> */}
     </form>
   );
 };
