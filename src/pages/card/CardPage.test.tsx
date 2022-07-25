@@ -5,7 +5,6 @@ import '@testing-library/jest-dom/extend-expect';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { storeService } from '../../store/storeService';
 import { httpService } from '../../api/httpService';
-//jest.mock('@components/toCardPage/userInfo/UserInfo', () => () => <div data-testid="mockUserInfo"/>);
 
 const mockSelectedRecord = {
   id: 1881,
@@ -72,6 +71,18 @@ describe('Test CardPage', () => {
     expect(screen.getByTestId('data-modal')).toBeInTheDocument();
     fireEvent.click(screen.getByTestId('close-button'));
     expect(screen.queryByTestId('data-modal')).not.toBeInTheDocument();
+    expect(updateRecord).not.toHaveBeenCalled();
+  });
+
+  test('should be closed modal-window after click on Cancel button', () => {
+    render(componentCardPage);
+    const buttonEdit = screen.getByRole('button', { name: 'Edit' });
+    expect(buttonEdit).toBeInTheDocument();
+    fireEvent.click(buttonEdit);
+    expect(screen.getByTestId('data-modal')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
+    expect(screen.queryByTestId('data-modal')).not.toBeInTheDocument();
+    expect(updateRecord).not.toHaveBeenCalled();
   });
 
   test('should be closed modal-window after click on Cancel button', () => {
@@ -84,17 +95,7 @@ describe('Test CardPage', () => {
     expect(screen.queryByTestId('data-modal')).not.toBeInTheDocument();
   });
 
-  test('should be closed modal-window after click on Cancel button', () => {
-    render(componentCardPage);
-    const buttonEdit = screen.getByRole('button', { name: 'Edit' });
-    expect(buttonEdit).toBeInTheDocument();
-    fireEvent.click(buttonEdit);
-    expect(screen.getByTestId('data-modal')).toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: 'Cancel' }));
-    expect(screen.queryByTestId('data-modal')).not.toBeInTheDocument();
-  });
-
-  test('should be closed modal-window after click on Cancel button', async () => {
+  test('should be closed modal-window after click on Save and called to function updateRecord', async () => {
     updateRecord.mockResolvedValue(mockedResponse.status);
     render(componentCardPage);
     const buttonEdit = screen.getByRole('button', { name: 'Edit' });
@@ -104,8 +105,6 @@ describe('Test CardPage', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Save' }));
     expect(screen.queryByTestId('data-modal')).not.toBeInTheDocument();
     await waitFor(() => expect(updateRecord).toHaveBeenCalled());
-    // await waitForElementToBeRemoved(() => screen.getByTestId('data-loading'));
-    //expect(updateRecord).toHaveBeenCalled();
   });
 
   test('should be closed modal window, if got error after update request', async () => {

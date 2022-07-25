@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useCallback } from 'react';
+import React, { FC, useState, useEffect, useCallback, useRef } from 'react';
 import { Record_Props } from '@interfaces/interfaceRecordProps';
 import Header from '@components/common/header/Header';
 import styles from './Content.module.css';
@@ -13,46 +13,85 @@ import { TypeModal, configModal_Props } from '@interfaces/interfaceModalProps';
 
 const MainPage: FC = () => {
   const [records, setRecords] = useState<Record_Props[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const history = useNavigate();
   const [configModal, setConfigModal] = useState({} as configModal_Props);
+  // const isMounted = useRef(null);
+  const abortControllerRef = useRef(null);
+
+  /*   useEffect(() => {
+        isMounted.current = true;
+        loadingData();
+        return () => {
+            isMounted.current = false;
+            setIsLoading(false);
+        };
+    }, []);
+
+    const loadingData = useCallback(()=> {
+        setIsLoading(true);
+        httpService
+            .getRecords()
+            .then((res: Record_Props[]) => {
+                if(isMounted.current){
+                    setRecords(res);
+                } else {
+                    throw new Error ('AbortError');
+                }
+            })
+            .catch((error) => {
+                if (error.message !== "AbortError") {
+                    setRecords([]);
+                    setConfigModal({type: TypeModal.ERROR, visible: true, data: {message: error.message}});
+                }
+            })
+            .finally(() => {
+                if (isMounted.current){
+                    setIsLoading(false);
+                }
+            });
+    },[isMounted.current]);*/
 
   useEffect(() => {
-    setIsLoading(true);
+    abortControllerRef.current = new AbortController();
     loadingData();
     return () => {
+      abortControllerRef.current.abort();
       setIsLoading(false);
     };
   }, []);
 
-  const loadingData = () => {
+  const loadingData = useCallback(() => {
+    setIsLoading(true);
+    const signal: AbortSignal = abortControllerRef.current.signal;
     httpService
-      .getRecords()
+      .getRecords(signal)
       .then((res: Record_Props[]) => {
         setRecords(res);
       })
       .catch((error) => {
-        setRecords([]);
-        setConfigModal({ type: TypeModal.ERROR, visible: true, data: { message: error.message } });
+        if (error.message !== 'canceled') {
+          setRecords([]);
+          setConfigModal({ type: TypeModal.ERROR, visible: true, data: { message: error.message } });
+        }
       })
       .finally(() => {
-        setIsLoading(false);
+        if (!signal.aborted) {
+          setIsLoading(false);
+        }
       });
-  };
+  }, [abortControllerRef.current?.signal.aborted]);
 
-  const addRecord = useCallback((record: Record_Props) => {
-    request(ACTION.ADD_RECORD, record).then((result) => {
-      if (result === HttpStatusCode.OK) {
-        setIsLoading(true);
-        loadingData();
-      }
-    });
+  const addRecord = useCallback(async (record: Record_Props) => {
+    const result = await request(ACTION.ADD_RECORD, record);
+    if (result === HttpStatusCode.OK) {
+      loadingData();
+    }
   }, []);
 
   const removeRecord = async (recordID: number) => {
     const result = await request(ACTION.REMOVE_RECORD, recordID);
     if (result === HttpStatusCode.OK) {
-      setIsLoading(true);
       loadingData();
     }
   };
@@ -91,7 +130,7 @@ const MainPage: FC = () => {
       <Header handleClickAdd={addRecord} />
       {!isLoading ? (
         <div data-testid="data-content" className={styles.wrapperContent}>
-          {!records?.length ? (
+          {!records.length ? (
             <p data-testid="emptyRecords" className={styles.textError}>
               Not records
             </p>
