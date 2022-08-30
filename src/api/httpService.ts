@@ -19,7 +19,7 @@ export const httpService = {
   },
   updateRecord: (payload: { [key: string]: number | Record_Props }) => {
     return apiService
-      .post(`${constants.API.RECORD_URL}${payload.id}`, payload.data)
+      .put(`${constants.API.RECORD_URL}${payload.id}`, payload.data)
       .then((response: AxiosResponse) => response.status);
   },
 };

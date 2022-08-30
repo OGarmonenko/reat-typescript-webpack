@@ -5,7 +5,7 @@ import { IUserInfo_Props } from '@interfaces/IUserInfoProps';
 import UserInfoItem from '@components/toCardPage/userInfo/UserInfoItem';
 import { Button } from '@enums';
 import CustomButton from '@components/custom/button/CustomButton';
-import constants from '@constants';
+import constants, { LABEL_USER } from '@constants';
 import { formatedDatetoStr } from '@utils/dateUtils';
 
 export interface CardUserInfo_Props {
@@ -41,7 +41,7 @@ const UserInfo: FC<CardUserInfo_Props> = ({ edit, clickSave, clickCancel, select
 
   return (
     <div data-testid="data-userInfo" className={styles.wrapperUserInfo}>
-      <form className={styles.wrapperCard}>
+      <div className={styles.wrapperCard}>
         {constants.USER_ITEM_ARRAY.map((item: string, index: number) => (
           <UserInfoItem
             key={index}
@@ -51,9 +51,10 @@ const UserInfo: FC<CardUserInfo_Props> = ({ edit, clickSave, clickCancel, select
             handleChange={handleChange}
             type={item}
             handleDateChange={handleDateChange}
+            label={LABEL_USER[item]}
           />
         ))}
-      </form>
+      </div>
       {edit && (
         <div className={styles.buttonsWrapper}>
           <CustomButton typeButton="modalButton" onClick={handleClickSave}>

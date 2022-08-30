@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import styles from '@components/toCardPage/userInfo/UserInfoItem.module.css';
 import DatePickerInput from '@components/custom/input/DatePickerInput';
 import PhoneInput from '@components/custom/input/PhoneInput';
-import { LABEL_USER } from '@constants';
 
 interface UserInfoItem_Props {
   handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -11,9 +10,19 @@ interface UserInfoItem_Props {
   type?: string;
   item?: string;
   edit?: boolean;
+  label: string;
 }
 
-const UserInfoItem: FC<UserInfoItem_Props> = ({ edit, item, userData, handleChange, type, handleDateChange }) => {
+const UserInfoItem: FC<UserInfoItem_Props> = ({
+  edit,
+  item,
+  userData,
+  handleChange,
+  type,
+  handleDateChange,
+  label,
+}) => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   const getInput = (type: string): any => {
     switch (type) {
       case 'phone':
@@ -28,7 +37,7 @@ const UserInfoItem: FC<UserInfoItem_Props> = ({ edit, item, userData, handleChan
     <>
       <div data-testid="data-cardRowUser" className={styles.cardRowUser}>
         <label data-testid="labelItem" className={styles.subTitle}>
-          {LABEL_USER[item]}
+          {label}
         </label>
         {edit && getInput(type)}
         {!edit && (

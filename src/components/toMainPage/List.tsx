@@ -6,7 +6,7 @@ import { Record_Props } from '@interfaces/interfaceRecordProps';
 interface List_Props {
   title: string;
   records: Record_Props[];
-  removeRecord: (recordID: number) => void;
+  removeRecord: (recordID: string | number) => void;
   refreshRoute: (recordID: number) => void;
 }
 

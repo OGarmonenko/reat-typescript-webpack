@@ -19,6 +19,8 @@
       "@api/*": ["src/api/*"],
       "@constants": ["src/constants/constants"],
       "@enums": ["src/enums/enums"],
+      "@history/*": ["src/history/*"],
+      "@services/*": ["src/services/*"]
     }
   },
 
