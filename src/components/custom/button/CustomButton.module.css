@@ -3,6 +3,7 @@
     font-size: 16px;
     width: 100px;
     height: 35px;
+    cursor: pointer;
 }
 .modalButton {
     margin-left: 15px;
@@ -10,9 +11,11 @@
     font-size: 14px;
     width: 70px;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 .modalButton:hover {
     color: #ffffff;
     background: #61dafb;
+    cursor: pointer;
 }

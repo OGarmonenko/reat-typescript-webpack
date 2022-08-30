@@ -1,0 +1,19 @@
+.wrapperRowAuth {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    /*gap: 10px;*/
+    flex-wrap: wrap;
+}
+.errorLabel{
+    gap: 0 !important;
+    color: #C21F39;
+    font-size: 12px;
+    margin-left:auto;
+}
+.wrapperErr {
+    color: #C21F39;
+    font-size: 15px;
+}

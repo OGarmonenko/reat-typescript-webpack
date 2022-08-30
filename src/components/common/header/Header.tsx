@@ -6,22 +6,34 @@ import styles from './Header.module.css';
 import { Record_Props } from '@interfaces/interfaceRecordProps';
 import { Button } from '@enums';
 import { IUserInfo_Props } from '@interfaces/IUserInfoProps';
-//import { useNavigate } from 'react-router-dom';
-//import constants from "@constants";
+import { useNavigate } from 'react-router-dom';
+import constants from '@constants';
+import { getDateRecord } from '@utils/dateUtils';
 
 interface Header_Props {
-  handleClickAdd: (record: Record_Props) => void;
+  handleClickAdd?: (record: Record_Props) => void;
+  authPage?: boolean;
+  titlePage?: string;
+  handleClickRegistration?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  handleClickAuthorization?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Header: FC<Header_Props> = ({ handleClickAdd }) => {
+const Header: FC<Header_Props> = ({
+  handleClickAdd,
+  handleClickRegistration,
+  handleClickAuthorization,
+  authPage,
+  titlePage,
+}) => {
   const [record, setRecord] = useState<string>('');
-  // const history = useNavigate();
+  const history = useNavigate();
 
   const createRecord = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const date: number = moment.now();
+    const id: number = moment.now();
+    const date = getDateRecord(id);
     const newRecord: Record_Props = {
-      id: date,
+      id: id,
       item: record,
       date: date,
       userInfo: {} as IUserInfo_Props,
@@ -34,14 +46,40 @@ const Header: FC<Header_Props> = ({ handleClickAdd }) => {
     setRecord(e.target.value.replace(/[а-яё]/gi, ''));
   };
 
+  const handleClickSignOut = () => {
+    localStorage.clear();
+    history(constants.ROUTES.AUTH_PATH);
+  };
+
   return (
-    <form data-testid="data-header" className={styles.wrapperHeader}>
-      <CustomInput type="text" placeholder={'Enter record...'} value={record} onChange={validateData} />
-      <CustomButton disabled={!record.length} onClick={createRecord}>
-        {Button.ADD}
-      </CustomButton>
-      {/*         <button type="button" onClick={()=> history(constants.ROUTES.CARD_PATH + `${1658231301837}`)}>STOPED</button> */}
-    </form>
+    <div data-testid="data-header" className={styles.wrapperHeader}>
+      {!authPage && (
+        <>
+          <div className={styles.wrapperForm}>
+            <CustomInput type="text" placeholder={'Enter record...'} value={record} onChange={validateData} />
+            <CustomButton disabled={!record.length} onClick={createRecord}>
+              {Button.ADD}
+            </CustomButton>
+          </div>
+          <div className={styles.wrapperButton}>
+            <CustomButton onClick={handleClickSignOut}>
+              {localStorage.getItem('token') ? Button.SignOut : Button.SignIn}
+            </CustomButton>
+          </div>
+        </>
+      )}
+      {authPage && (
+        <div className={styles.wrapperAuthHeader}>
+          <button className={styles.buttonReg} onClick={handleClickAuthorization}>
+            {Button.Authorization}
+          </button>
+          <p className={styles.titlePage}>{titlePage}</p>
+          <button className={styles.buttonReg} onClick={handleClickRegistration}>
+            {Button.Registration}
+          </button>
+        </div>
+      )}
+    </div>
   );
 };
 

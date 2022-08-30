@@ -11,7 +11,7 @@ import { configModal_Props, TypeModal } from '@interfaces/interfaceModalProps';
 import { IUserInfo_Props } from '@interfaces/IUserInfoProps';
 import CustomButton from '@components/custom/button/CustomButton';
 import { httpService } from '@api/httpService';
-import { HttpStatusCode } from '@enums';
+import { HttpStatusCode, User_Roles } from '@enums';
 
 const CardPage: FC = () => {
   const { recordID } = useParams<string>();
@@ -67,7 +67,9 @@ const CardPage: FC = () => {
           <div className={styles.personalCardDiv}>
             <div className={styles.subHeaderDiv}>
               <p className={styles.title}>Personal data</p>
-              <CustomButton onClick={onClickEdit}>Edit</CustomButton>
+              {localStorage.getItem('roles') === User_Roles.ADMIN && (
+                <CustomButton onClick={onClickEdit}>Edit</CustomButton>
+              )}
             </div>
             <UserInfo edit={false} selectedUserInfo={selectedRecord?.userInfo} />
           </div>

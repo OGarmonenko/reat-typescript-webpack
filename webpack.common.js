@@ -48,6 +48,8 @@ module.exports = {
       '@api': path.resolve(__dirname, 'src/api'),
       '@constants': path.resolve(__dirname, 'src/constants/constants'),
       '@enums': path.resolve(__dirname, 'src/enums/enums'),
+      '@history': path.resolve(__dirname, 'src/history'),
+      '@services': path.resolve(__dirname, 'src/services'),
     },
   },
 };

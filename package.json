@@ -30,7 +30,9 @@
       "@assets/(.*)": "<rootDir>/src/assets/$1",
       "@api/(.*)": "<rootDir>/src/api/$1",
       "@constants": "<rootDir>/src/constants/constants",
-      "@enums": "<rootDir>/src/enums/enums"
+      "@enums": "<rootDir>/src/enums/enums",
+      "@history": "<rootDir>/src/history/$1",
+      "@services": "<rootDir>/src/services/$1"
     },
     "testEnvironment": "jsdom",
     "transformIgnorePatterns": [

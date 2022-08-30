@@ -1,6 +1,18 @@
-export const enum HttpStatusCode {
+export enum HttpStatusCode {
   OK = 200,
+  CREATED = 201,
+  AUTH_ERROR = 401,
 }
+
+export enum TitlePage {
+  Authorization = 'Authorization',
+  Registration = 'Registration',
+}
+
+export enum User_Roles {
+  ADMIN = 'Admin',
+}
+
 export enum Button {
   OK = 'OK',
   SAVE = 'Save',
@@ -8,10 +20,21 @@ export enum Button {
   DELETE = 'Delete',
   ADD = 'Add',
   MAIN = 'Main',
+  SignIn = 'Sign in',
+  SignOut = 'Sign out',
+  SignUp = 'Sign up',
+  Registration = 'Registration',
+  Authorization = 'Authorization',
 }
-export const enum ACTION {
+
+export enum ACTION {
   ADD_RECORD = 'addRecord',
   REMOVE_RECORD = 'removeRecord',
+}
+
+export enum ACTION_AUTH {
+  LOGIN = 'login',
+  REGISTRATION = 'registration',
 }
 
 export const enum ALT {
@@ -20,15 +43,4 @@ export const enum ALT {
   WARNING = 'warning',
   INFO = 'info',
   MAIN = 'main',
-}
-
-export const enum UserInfoLabel {
-  SURNAME = 'Surname',
-  NAME = 'Name',
-  LASTNAME = 'Lastname',
-  BIRTHDAY = 'Birthday',
-  LOCALITY = 'Locality',
-  ADDRESS = 'Address',
-  PHONE = 'Phone',
-  EMAIL = 'Email',
 }

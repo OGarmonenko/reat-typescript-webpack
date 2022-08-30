@@ -84,7 +84,7 @@ const MainPage: FC = () => {
 
   const addRecord = useCallback(async (record: Record_Props) => {
     const result = await request(ACTION.ADD_RECORD, record);
-    if (result === HttpStatusCode.OK) {
+    if (result === HttpStatusCode.CREATED) {
       loadingData();
     }
   }, []);

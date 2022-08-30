@@ -7,3 +7,40 @@
     height: 70px;
     max-height: 70px;
 }
+.wrapperForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+.wrapperAuthHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titlePage {
+    justify-items: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+}
+.buttonReg {
+    padding: 10px 15px;
+    background: #61dafb;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    border: solid 1px #ffffff;
+    color: #ffffff;
+}
+
+.buttonReg:hover{
+    border: solid 1px #000088;
+    color: #000088;
+
+}
