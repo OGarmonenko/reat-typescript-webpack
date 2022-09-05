@@ -9,9 +9,10 @@ interface ListItem_Props {
   record: Record_Props;
   onRemove: (recordID: string) => void;
   onClickRecord: (recordID: number) => void;
+  role: string;
 }
 
-const ListItem: FC<ListItem_Props> = ({ record, onRemove, onClickRecord }) => {
+const ListItem: FC<ListItem_Props> = ({ record, onRemove, onClickRecord, role }) => {
   const handleClickButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     onRemove(record._id);
@@ -35,9 +36,7 @@ const ListItem: FC<ListItem_Props> = ({ record, onRemove, onClickRecord }) => {
         <p data-testid="date" className={styles.dateRecord}>
           {record.date}
         </p>
-        {localStorage.getItem('roles') === User_Roles.ADMIN && (
-          <CustomButton onClick={handleClickButton}>{Button.DELETE}</CustomButton>
-        )}
+        {role === User_Roles.ADMIN && <CustomButton onClick={handleClickButton}>{Button.DELETE}</CustomButton>}
       </div>
     </li>
   );

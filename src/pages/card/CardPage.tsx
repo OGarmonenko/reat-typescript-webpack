@@ -18,6 +18,7 @@ const CardPage: FC = () => {
   const [selectedRecord, setSelectedRecord] = useState<Record_Props | null>(storeService.findRecord(Number(recordID)));
   const [configModal, setConfigModal] = useState({} as configModal_Props);
   const [isLoading, setIsLoading] = useState(false);
+  const role = localStorage.getItem('roles');
 
   const onClose = () => {
     setConfigModal({ type: null, visible: false });
@@ -67,9 +68,7 @@ const CardPage: FC = () => {
           <div className={styles.personalCardDiv}>
             <div className={styles.subHeaderDiv}>
               <p className={styles.title}>Personal data</p>
-              {localStorage.getItem('roles') === User_Roles.ADMIN && (
-                <CustomButton onClick={onClickEdit}>Edit</CustomButton>
-              )}
+              {role === User_Roles.ADMIN && <CustomButton onClick={onClickEdit}>Edit</CustomButton>}
             </div>
             <UserInfo edit={false} selectedUserInfo={selectedRecord?.userInfo} />
           </div>
