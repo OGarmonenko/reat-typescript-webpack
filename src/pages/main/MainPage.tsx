@@ -18,7 +18,7 @@ const MainPage: FC = () => {
   const [configModal, setConfigModal] = useState({} as configModal_Props);
   // const isMounted = useRef(null);
   const abortControllerRef = useRef(null);
-
+  const role = localStorage.getItem('roles');
   /*   useEffect(() => {
         isMounted.current = true;
         loadingData();
@@ -140,6 +140,7 @@ const MainPage: FC = () => {
               records={records}
               removeRecord={removeRecord}
               refreshRoute={refreshRoute}
+              role={role}
             />
           )}
         </div>
